@@ -1,0 +1,5 @@
+export const SUBMIT_SEARCH = 'header/SUBMIT_SEARCH'
+export const TOP_COMPONENT = 'header/TOP_COMPONENT'
+export const CHANGE_SEARCH_KEY = 'header/CHANGE_SEARCH_KEY'
+export const SAVE_SEARCH_LIST = 'header/SAVE_SEARCH_LIST'
+export const SAVE_USERINFO = 'header/SAVE_USERINFO'

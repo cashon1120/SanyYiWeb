@@ -1,0 +1,1 @@
+export const GET_ASEMBLY_COMPONENT = 'home/GET_ASEMBLY_COMPONENT';
