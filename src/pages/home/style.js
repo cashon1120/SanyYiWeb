@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import LoadingImg from '../../statics/images/loading.gif';
+import defaultBannerImg from '../../statics/images/banner2.jpeg'
 
 export const HomeWrapper = styled.div`
 	overflow: hidden;
@@ -9,7 +10,15 @@ export const HomeWrapper = styled.div`
 export const BannerOuter = styled.div`
 	overflow: hidden;
 	margin: 0 auto;
-	background: #c6daf1;
+	background: #fff;
+	width: 1200px;
+`;
+
+export const DefaultBanner = styled.div`
+	overflow: hidden;
+	height: 450px;
+	background: url(${defaultBannerImg}) no-repeat center;
+	width: 100%;
 `;
 
 export const BannerWrapper = styled.div`
@@ -45,12 +54,12 @@ export const BannerWrapper = styled.div`
 export const Title = styled.div`
 	overflow: auto;
 	margin: 0 auto;
-	border-bottom: 1px solid #ebebeb;
+	border-bottom: 2px solid #d2d2d2;
 	padding: 15px 0;
 	margin-top: 20px;
 	h1 {
 		padding-bottom: 20px;
-		border-bottom: 1px dashed #ebebeb;
+		border-bottom: 1px dashed #d2d2d2;
 		margin-bottom: 15px;
 	}
 	div{
@@ -62,7 +71,7 @@ export const Title = styled.div`
 			white-space: nowrap;
 			text-overflow: ellipsis;
 			padding: 8px 0;
-			color: #838383;
+			font-size: 17px;
 			&:hover, &.active{
 				color: #f00;
 			}
@@ -85,7 +94,9 @@ export const Title = styled.div`
 export const SwiperWrapper = styled.div`
 	z-index: 1;
 	position: relative;
-	background:#f9f9f9;
+	background:#efefef;
+	width: 1200px;
+	margin: auto;
 	overflow:auto;
 	text-align: center;
 	padding: 30px 0;
@@ -111,7 +122,7 @@ export const PicContainer = styled.ul`
 		}
 		img{
 			display:block;
-			border: 1px solid #ebebeb;
+			border: 2px solid #d2d2d2;
 			width: 100%;
 			height: 160px;
 			margin-bottom: 15px;

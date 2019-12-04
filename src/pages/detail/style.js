@@ -6,9 +6,11 @@ import IconExcelPic from '../../statics/images/icon-excel.jpg'
 import IconPdfPic from '../../statics/images/icon-pdf.jpg'
 
 export const Title = styled.div`
+	line-height: 2;
 	text-align: left;
 	margin-bottom: 20px;
 	h1{
+		margin-bottom: 20px;
 		font-size: 24px;
 		color:#000;
 	}
@@ -17,8 +19,7 @@ export const Title = styled.div`
 export const Banner = styled.div`
 	overflow: hidden;
 	margin: 0 auto;
-	border: 1px solid #ebebeb;
-	padding: 30px;
+	padding: 30px 0;
 	margin-bottom: 30px;
 	height: 582px;
 	box-sizing: border-box;
@@ -26,6 +27,7 @@ export const Banner = styled.div`
 
 export const BannerMain = styled.div`
 	width: 750px;
+	border:2px solid #d2d2d2;
 	text-align: center;
 	height: 400px;
 	&::after{
@@ -37,7 +39,7 @@ export const BannerMain = styled.div`
 	}
 	img {
 		max-width: 99.5%;
-		max-height: 400px;
+		max-height: 380px;
 		vertical-align:middle;
 	}
 	video {
@@ -58,7 +60,7 @@ export const ImgContainer = styled.ul`
 	float: left;
 `
 export const TitleContainer = styled.ul`
-	width: 360px;
+	width: 400px;
 	float: right;
 	line-height: 24px;
 	max-height: 520px;
@@ -90,7 +92,7 @@ export const ContentRight = styled.div`
 `
 
 export const Content = styled.div`
-	border: 1px solid #ebebeb;
+	border: 2px solid #d2d2d2;
 	padding: 0 30px 30px 30px;
 	.imglist {
 		padding-top: 10px;
@@ -121,7 +123,7 @@ export const ImgUl = styled.ul`
 		display: flex;
 		align-items: center;
 		padding: 10px 0;
-		border-bottom: 1px solid #ebebeb;
+		border-bottom: 2px solid #d2d2d2;
 		&:last-child {
 			border: 0;
 		}
@@ -191,7 +193,7 @@ export const SwiperWrapper = styled.div`
 	margin-top: 30px;
 	z-index: 1;
 	position: relative;
-	background:#f9f9f9;
+	background:#efefef;
 	overflow:auto;
 	text-align: center;
 	padding: 30px 0;
@@ -207,6 +209,11 @@ export const ModelUl = styled.ul`
 		margin-bottom: 10px;
 		overflow:hidden;
 		text-overflow: ellipsis;
+		&.current{
+			a {
+				color: #c0c0c0;
+			}
+		}
 		a {
 			padding: 10px;
 			width: 100%;

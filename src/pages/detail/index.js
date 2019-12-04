@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 import Imglist from '../../common/imgList/Index'
 import BreadCrumb from '../../common/breadCrumb/Index'
 import SwiperComponent from '../../common/swiper/Index'
+import DefaultImg from '../../statics/images/nopic.jpg'
 import {setDefaultImg, formartPicture, setBannerSize} from '../../utils/format'
 import {Button} from 'antd';
 import {
@@ -38,7 +39,8 @@ class Detail extends Component {
 				loading: false,
 				failureMode: '',
 				bannerWidth: null,
-				bannerHeight: null
+				bannerHeight: null,
+				failureLevel: {},
 		}
 		componentDidMount() {
 				// 获取所有总成列表
@@ -59,21 +61,25 @@ class Detail extends Component {
 		// 获取详情
 		getInfo(id) {
 				const {getComponentInfo} = this.props
+				const { type } = this.state
+				if(type === 1 || type === 2){
+					localStorage.removeItem('failureModes')
+				}
 				const callback = response => {
 						const picList = response.picture || response.faultPicture
 						const url = picList && picList.length > 0
 								? picList[0].url
-								: ''
+								: DefaultImg
+						
 						this.setBanner(url)
-
 				}
 				getComponentInfo(id, callback)
 		}
 
 		setBanner(url) {
-
-				if(url.indexOf('mp4') < 0){
+				if(url && url.indexOf('mp4') < 0){
 					setBannerSize(url, 750 / 400, (size) => {
+						
 						const {bannerWidth, bannerHeight} = size
 						this.setState({bannerWidth, bannerHeight, bannerImgUrl: url})
 				})
@@ -81,7 +87,9 @@ class Detail extends Component {
 				}else{
 					this.setState({bannerImgUrl: url})
 					setTimeout(() => {
-						this.refs.video.play()
+						if(this.refs.video && this.refs.video.play){
+							this.refs.video.play()
+						}
 					}, 200);
 				}
 		}
@@ -93,6 +101,15 @@ class Detail extends Component {
 								const bannerImgUrl = (response.faultPicture && response.faultPicture[0].url) || response.faultPicture[0].url
 								this.setBanner(bannerImgUrl)
 						}
+						this.setState({
+							failureLevel:{
+								systemName: response.secondaryComponentName,
+								systemId: response.secondaryComponentId,
+								assemblyComponentId: response.assemblyComponentId,
+								assemblyComponentName: response.assemblyComponentName
+							}
+						})
+					
 				}
 				getFailure(id, callback)
 		}
@@ -156,7 +173,6 @@ class Detail extends Component {
 
 		// baner 小图鼠标移入
 		handleHoverBanner = url => {
-			console.log(url)
 				this.setBanner(url)
 		}
 
@@ -271,10 +287,19 @@ class Detail extends Component {
 						id,
 						loading,
 						bannerWidth,
+						failureLevel,
 						bannerHeight
 				} = this.state
 				const replaceKey = this.replaceKey
 				const info = componentInfo.toJS()
+				if(type === '1' || type === '2'){
+					localStorage.setItem('failureModes', JSON.stringify(info.failureModes))
+				}
+				let brotherFailureModes = []
+				if(type === '5' && localStorage.getItem('failureModes')){
+					brotherFailureModes = JSON.parse(localStorage.getItem('failureModes'))
+				}
+
 				let influenceFactorArr = []
 				if (info.influenceFactorPicture) {
 						influenceFactorArr = formartPicture(info.influenceFactorPicture, 2)
@@ -284,7 +309,7 @@ class Detail extends Component {
 						info
 								.picture
 								.forEach(item => {
-										pictureList.push({componentId: '', name: '', url: item.url, sourceType: item.type, id: item.id})
+										pictureList.push({componentId: '', name: '', url: item.url, sourceType: item.sourceType, id: item.id})
 								})
 				} else if (Array.isArray(info.faultPicture)) {
 						info
@@ -303,12 +328,12 @@ class Detail extends Component {
 										}
 								})
 				}
-				const temp = bannerImgUrl.split('.')
+				const temp = bannerImgUrl ? bannerImgUrl.split('.') : ''
 				const urlType = temp[temp.length - 1]
 				return (
 						<Fragment>
 								<MainWrapper>
-										<BreadCrumb type={type} id={id}/>
+										<BreadCrumb type={type} id={id} failureLevel={failureLevel}/>
 										<Banner>
 												<ImgContainer>
 														<BannerMain>
@@ -378,12 +403,12 @@ class Detail extends Component {
 										? null
 										: coreComponentList.length > 0
 												? <SwiperWrapper>
-																<SwiperComponent
+																{/* <SwiperComponent
 																		classType="swiperIndex"
 																		data={coreComponentList}
 																		handleClick={this.handleClick}
 																		noFocus={true}
-																		listNum={6}/>
+																		listNum={6}/> */}
 														</SwiperWrapper>
 												: null
 }
@@ -629,7 +654,7 @@ class Detail extends Component {
 												</ContentLeft>
 												<ContentRight>
 														<H1Title>{type === '5'
-																		? '版本历史'
+																		? '历史版本'
 																		: '故障模式'}</H1Title>
 														<Content style={{
 																padding: 10
@@ -644,7 +669,7 @@ class Detail extends Component {
 																														className={item.id === info.id
 																														? 'active'
 																														: null}>
-																														<Link to={`/detail/5/${item.id}`}>
+																														<Link title={item.failureMode} to={`/detail/5/${item.id}`}>
 																																<span className="link-title">{item.failureMode}</span>
 																																<span>{item.version}</span>
 																														</Link>
@@ -664,7 +689,7 @@ class Detail extends Component {
 																								.failureModes
 																								.map(item => {
 																										return <li key={item.id}>
-																												<Link to={`/detail/5/${item.id}`}>{item.failureMode}</Link>
+																												<Link  title={item.failureMode} to={`/detail/5/${item.id}`}>{item.failureMode}</Link>
 																										</li>
 																								})
 																						: <span
@@ -675,6 +700,32 @@ class Detail extends Component {
 }
 																		</ModelUl>}
 														</Content>
+												
+														{type === '5' ? 
+														<Fragment>
+																<H1Title style={{marginTop: 30}}>故障模式</H1Title>
+																<Content style={{
+																padding: 10
+														}}>
+<ModelUl>
+																				{brotherFailureModes && brotherFailureModes.length > 0
+																						? brotherFailureModes
+																								.map(item => {
+																										return <li key={item.id} className={item.id == id ? 'current' : null}>
+																												<Link title={item.failureMode} to={`/detail/5/${item.id}`}>{item.failureMode}</Link>
+																										</li>
+																								})
+																						: <span
+																								style={{
+																								paddingLeft: 10
+																						}}
+																								className="noData">暂无数据</span>
+}
+																		</ModelUl>
+
+														</Content>
+														</Fragment> : null}
+														
 												</ContentRight>
 										</ContentWrapper>
 								</MainWrapper>

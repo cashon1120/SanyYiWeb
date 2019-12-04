@@ -7,7 +7,7 @@ export const SearchPage = styled.div`
 		padding: 10px;
 		text-align: center;
 		width: 200px;
-		border: 1px solid #ebebeb;
+		border: 2px solid #d2d2d2;
 		margin: 30px auto;
 		&:hover{
 			background: #f7f7f7;
@@ -17,12 +17,12 @@ export const SearchPage = styled.div`
 	.searchList{
 		&:nth-child(2){
 			padding-top: 30px;
-			border-top: 1px dashed #ebebeb;
+			border-top: 1px dashed #d2d2d2;
 		}
 		margin-top: 30px;
 		display:flex;
 		line-height: 24px;
-		border-bottom: 1px dashed #ebebeb;
+		border-bottom: 1px dashed #d2d2d2;
 		padding-bottom: 30px;
 		color: #b3b3b3;
 		a {

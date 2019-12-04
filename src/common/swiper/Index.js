@@ -8,20 +8,24 @@ import Loadimg from '../loadImg/Index'
 
 class SwiperComponent extends Component {
   state = {
+    data: [],
     activeId: '',
     initialSlide: 0
   }
 
+  componentWillReceiveProps(nextProp){
+    const { data } = this.props
+    this.setState({
+      data
+    })
+  }
+
   // 是否更新组件
   shouldComponentUpdate(nextProps, nextState) {
-    if (nextState.activeId !== this.state.activeId) {
-      return true
-    }
-    if (JSON.stringify(nextProps.data) === JSON.stringify(this.props.data)) {
+    if (nextProps.data.length > 0 &&  nextState.data.length > 0 && (nextProps.data[0].id === nextState.data[0].id)) {
       return false
-    } else {
-      return true
     }
+    return true
   }
 
   // 组装swiper列表
@@ -76,6 +80,7 @@ class SwiperComponent extends Component {
   }
 
   render() {
+    console.log('更新')
     const {data, listNum, classType, noFocus} = this.props
     const {activeId} = this.state
     const swiperList = this.setSwiperData(data, listNum) // 一组swiper数据

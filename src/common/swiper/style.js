@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import iconLeftPic from '../../statics/images/arr-left.png';
 import iconRightPic from '../../statics/images/arr-right.png';
-import LoadingImg from '../../statics/images/loading.gif';
 
 export const SwiperWrapper = styled.div`
 	z-index: 1;
@@ -31,7 +30,7 @@ export const SwiperWrapper = styled.div`
 
 		.img-container{
 			text-align: center;
-			border: 1px solid #ebebeb;
+			border: 2px solid #d2d2d2;
 			width: 100%;
 			height:104px;
 			background-size: 15% auto;
@@ -39,11 +38,11 @@ export const SwiperWrapper = styled.div`
 			margin-bottom: 15px;
 			overflow:hidden;
 			&:hover {
-				border: 1px solid #f00;
+				border: 2px solid #f00;
 				box-sizing: border-box;
 			}
 			&.active {
-				border: 1px solid #f00;
+				border: 2px solid #f00;
 				box-sizing: border-box;
 			}
 		}
@@ -91,7 +90,7 @@ export const SwiperWrapper = styled.div`
 		position: relative;
 		overflow:hidden;
 		height: 135px;
-		width: 1200px;
+		width: 1180px;
 		.swiper-img{
 			border: 0;
 			text-align: left;

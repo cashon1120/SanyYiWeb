@@ -37,6 +37,7 @@ class ImgList extends Component {
 										centered
 										footer={null}
 										onCancel={this.handleCancel}
+										width={800}
 										visible={previewVisible}>
 										<div style={{padding: 10}}>
 											<img

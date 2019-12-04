@@ -2,35 +2,51 @@ import React, {PureComponent, Fragment} from 'react'
 import {connect} from 'react-redux'
 
 import SwiperComponent from '../../common/swiper/Index'
-import {BannerOuter, BannerWrapper, Title, PicContainer, SwiperWrapper} from './style'
+import {BannerOuter,DefaultBanner, BannerWrapper, Title, PicContainer, SwiperWrapper} from './style'
 import Loading from '../../common/loading/Index'
 import {MainWrapper, H1Title} from '../../style'
 import {actionCreators} from './store';
-import defaultBanner from '../../statics/images/banner.jpg'
 import DefaultImg from '../../statics/images/nopic.jpg'
 import videoPic from '../../statics/images/video-1.jpg'
+
 import {setDefaultImg, setBannerSize} from '../../utils/format'
 
 class Home extends PureComponent {
 		state = {
-				bannerUrl: defaultBanner,
-				activeId: 102,
+				bannerUrl: '',
+				activeId: '',
+				id: '',
 				loading: false,
 				bannerHeight: '',
 				bannerWidth: '',
 				bannerActive: false
 		}
 
-		componentDidMount() {
-				const {activeId} = this.state
+		componentDidMount(){
+			const {activeId} = this.state
+			const {topComponent} = this.props
+			if(!activeId && topComponent.toJS().length > 0){
+				const activeId = topComponent.toJS()[0].children[0].id
 				this.setActiveId(activeId)
+			}
+		}
+
+		componentWillReceiveProps(nextprops) {
+				const {activeId} = this.state
+				const {topComponent} = nextprops
+				if(!activeId&& topComponent.toJS().length > 0){
+					const activeId = topComponent.toJS()[0].children[0].id
+					this.setActiveId(activeId)
+				}
 		}
 
 		// 鼠标移入事件
-		handleHover = (bannerUrl, activeId) => {
+		handleHover = (bannerUrl, id) => {
 				this.setBanner(bannerUrl)
 				this.setState({
-					bannerActive: true
+					bannerActive: true,
+					id,
+					// activeId: id
 				})
 		}
 
@@ -65,7 +81,8 @@ class Home extends PureComponent {
 		}
 
 		// 跳转系统详情
-		handleClick = id => {
+		handleClick = () => {
+			const {id} = this.state
 				this
 						.props
 						.history
@@ -97,30 +114,33 @@ class Home extends PureComponent {
 						})
 						return null
 				})
+				let firstUrl = pictureList.length > 0 && pictureList[0].url ? pictureList[0].url : ''
 				return (
 						<Fragment>
-
+							{!bannerActive ? <DefaultBanner /> : 
 								<BannerOuter>
 										<MainWrapper>
 												<BannerWrapper>
 													<div className={bannerActive ? 'active' : null}>
 														<img
-																src={bannerUrl}
+																src={bannerUrl || firstUrl}
 																style={{
 																width: bannerWidth,
 																height: bannerHeight
 														}}
 																onError={e => setDefaultImg(e)}
+																onClick={this.handleClick}
 																alt="banner"/>
 																</div>
 												</BannerWrapper>
 										</MainWrapper>
 								</BannerOuter>
+								}
 								<SwiperWrapper>
 										<SwiperComponent
 												classType="swiperIndex"
 												data={pictureList}
-												handleClick={this.handleClick}
+												// handleClick={this.handleClick}
 												onHover={this.handleHover}
 												listNum={6}/>
 								</SwiperWrapper>
