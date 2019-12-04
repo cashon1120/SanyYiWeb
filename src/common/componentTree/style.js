@@ -2,35 +2,44 @@ import styled from 'styled-components'
 
 
 export const TreeData = styled.div `
+  &.fixedTree{
+    position: fixed;
+    top: 0;
+    bottom: 127px;
+  }
  z-index: 1000;
- position: fixed;
- left: 0;
- top: 80px;
- width: 200px;
+ position: absolute;
+ left: 50%;
+ margin-left: -900px;
+ width: 280px;
+ top: 67px;
+ bottom: 60px;
+ overflow-y: auto;
+ overflow-x: hidden;
+ border: 1px solid #eee;
  }
  .treeIcon {
+  display: none;
   font-size: 20px;
   position: fixed;
   background: #f00;
   color: #fff;
   top: 80px;
-  padding: 8px;
+  padding: 6px;
   left: 0;
  }
 `;
 
 export const TreeWrapper = styled.div `{
- position: fixed;
- background: #eee;
+ background: #fff;
  box-shadow:0 0 10px rgba(0,0,0, .1);
- width: 250px;
- left: -250px;
- max-height: 600px;
+ width: 280px;
  border-radius: 0 8px 8px 0;
  overflow: auto;
  padding-bottom: 15px;
+ height: 100%;
  div{
-  padding: 15px 0 0 5px;
+  padding: 15px 0 0 18px;
   span {
     cursor:pointer;
     overflow:hidden;
@@ -49,14 +58,15 @@ export const TreeWrapper = styled.div `{
     }
   }
   i {
-    transform: scale(.8);
-    font-size: 12px;
+    transform: scale(1);
+    font-size: 14px;
     vertical-align: middle;
     margin-right: 3px;
     position:relative;
     display:inline-block;
     width: 15px;
     top: 3px;
+    margin-right: 5px;
   }
   &.showChildren{
    display: block;

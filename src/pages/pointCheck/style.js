@@ -2,11 +2,11 @@ import styled from 'styled-components'
 
 export const SearchWrapper = styled.div`
 	padding:0 20px;
-	border: 1px solid #ebebeb;
+	border: 2px solid #d2d2d2;
 	margin: 30px 0;
 	.list {
 		display: flex;
-		border-bottom: 1px dashed #ebebeb;
+		border-bottom: 1px dashed #d2d2d2;
 		i {
 			color: #449aff;
 		}
@@ -23,7 +23,7 @@ export const SearchWrapper = styled.div`
 			.letter {
 				padding: 0;
 				a {
-					border: 1px solid #ebebeb;
+					border: 1px solid #d2d2d2;
 					padding: 9px 13px;
 					box-sizing: border-box;
 					margin: 0;
@@ -66,7 +66,7 @@ export const SearchWrapper = styled.div`
 export const SystemList = styled.div`
 	margin: 20px 0 30px 0;
 	display: flex;
-	border: 1px solid #ebebeb;
+	border: 2px solid #d2d2d2;
 	border-right: 0;
 	.noSearchInfo{
 		padding: 30px;
@@ -75,7 +75,7 @@ export const SystemList = styled.div`
 	}
 	&>div {
 		flex: 1;
-		border-right: 1px solid #ebebeb;
+		border-right: 2px solid #d2d2d2;
 		dt {
 			font-weight: bold;
 			padding-left: 15px;
@@ -86,7 +86,7 @@ export const SystemList = styled.div`
 			line-height: 38px;
 			position: relative;
 			padding-right: 15px;
-			border-bottom: 1px solid #ebebeb;
+			border-bottom: 2px solid #d2d2d2;
 		}
 		dd {
 			padding-left: 15px;

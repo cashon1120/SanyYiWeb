@@ -46,7 +46,7 @@ export const NavWrapper = styled.div `{
 				opacity: 1;
 				height: auto;
 				padding: 50px 50px 50px 100px;
-				border: 1px solid #ebebeb;
+				border: 2px solid #d2d2d2;
 				border-top: 0;
 			}
 			&.slide-exit {
@@ -76,11 +76,11 @@ export const NavWrapper = styled.div `{
 						dd{
 							float: left;
 							width: 40%;	
-							font-size: 14px;
+							font-size: 16px;
 							a{
 								line-height:35px;
 								padding: 0;
-								font-size: 14px;
+								font-size: 16px;
 							}
 							a:hover{
 								color: #ff0000;
@@ -145,7 +145,7 @@ export const SearchWrapper = styled.div `
 		margin-left: -40px;
 		width: 80px;
 		top: 50px;
-		border:1px solid #eee;
+		border:2px solid #eee;
 	}
 	button {
 		height: 40px;
@@ -166,7 +166,7 @@ export const SearchWrapper = styled.div `
 		outline: none;
 		background: #fff;
 		border-radius: 5px 0 0 5px;
-		font-size: 14px;
+		font-size: 16px;
 		color: #666;
 		&::placeholder {
 			color: #999;

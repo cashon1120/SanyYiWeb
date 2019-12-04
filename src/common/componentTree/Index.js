@@ -13,7 +13,8 @@ class ComponentTree extends Component {
 				url: '',
 				isLoginPage: false,
 				data: [],
-				activeId: ''
+				activeId: '',
+				fixed: false
 		}
 
 		componentDidMount() {
@@ -21,7 +22,21 @@ class ComponentTree extends Component {
 				const callback = data => {
 						this.setState({data})
 				}
-
+				const that = this
+				window.addEventListener('scroll', function(){
+					const { fixed } = that.state
+					const height = document.documentElement.scrollTop
+					if(height >= 67 && !fixed){
+						that.setState({
+							fixed: true
+						})
+					}
+					if(height < 67 && fixed){
+						that.setState({
+								fixed: false
+							})
+					}
+				})
 				getComponentList(callback)
 		}
 
@@ -33,6 +48,9 @@ class ComponentTree extends Component {
 		}
 
 		jumpto = (level, id) => {
+			if(parseInt(id, 10) === 1 || parseInt(id, 10) === 150) {
+				return
+			}
 			this.setState({
 				activeId: id
 			})
@@ -89,8 +107,8 @@ class ComponentTree extends Component {
 										: 'hideChildren'}>
 
 										{item.show
-												? <Icon onClick={() => this.onSelect(item.key, data)} type="caret-down"/>
-												: <Icon onClick={() => this.onSelect(item.key, data)} type="caret-right"/>
+												? <Icon onClick={() => this.onSelect(item.key, data)} type="minus-square"/>
+												: <Icon onClick={() => this.onSelect(item.key, data)} type="plus-square"/>
 }
 										<span title={item.title} onClick={() => this.jumpto(item.componentLevel, item.key)}>{item.title}</span>
 										{this.renderTreeNodes(item.children)}
@@ -102,7 +120,7 @@ class ComponentTree extends Component {
 						style={{
 						opacity: 0.2
 				}}
-						type="caret-right"/>
+						type="minus-square"/>
 						<span title={item.title} className={this.state.activeId === item.key ? 'active' : null} onClick={() => this.jumpto(item.componentLevel, item.key)}>{item.title}</span>
 				</div>
 		})
@@ -110,13 +128,13 @@ class ComponentTree extends Component {
 		showTree() {
 				const {focused} = this.state
 				this.setState({
-						focused: !focused
+						// focused: !focused
 				})
 		}
 
 		render() {
-				const {focused, data} = this.state
-				return <TreeData>
+				const {focused, data, fixed} = this.state
+				return <TreeData className={fixed ? 'fixedTree' : null}>
 						<Icon
 								className="treeIcon"
 								type="unordered-list"
