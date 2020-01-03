@@ -94,6 +94,7 @@ export const ContentRight = styled.div`
 export const Content = styled.div`
 	border: 2px solid #d2d2d2;
 	padding: 0 30px 30px 30px;
+	margin-bottom: 40px;
 	.imglist {
 		padding-top: 10px;
 	}

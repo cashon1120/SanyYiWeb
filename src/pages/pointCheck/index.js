@@ -410,7 +410,8 @@ class PointCheck extends PureComponent {
 										<div
 												style={{
 												textAlign: 'center',
-												paddingTop: 30
+												paddingTop: 30,
+												paddingBottom: 40
 										}}>
 												<Button
 														loading={loading}

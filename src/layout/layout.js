@@ -1,6 +1,7 @@
 import "babel-polyfill"
 import React, {Component, Fragment} from 'react'
 import 'antd/dist/antd.css'
+import './default.css'
 import {Route, Switch} from 'react-router-dom'
 import Header from '../common/header/Index'
 import Footer from '../common/footer/Index'

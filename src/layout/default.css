@@ -1,0 +1,10 @@
+.ant-table-bordered .ant-table-thead > tr > th, .ant-table-bordered .ant-table-tbody > tr > td {
+  border-right: 2px solid #d2d2d2;
+}
+.ant-table-thead > tr > th,.ant-table-tbody > tr > td {
+  border-bottom: 2px solid #d2d2d2;
+}
+
+.ant-table-small.ant-table-bordered .ant-table-content, .ant-input-group-addon, .ant-input {
+  border: 2px solid #d2d2d2;
+}

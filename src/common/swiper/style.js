@@ -30,7 +30,7 @@ export const SwiperWrapper = styled.div`
 		position: relative;
 		background: #f0f0f0;
 		border-radius: 3px;
-		border: 1px solid #e6e6e6;
+		border: 2px solid #d2d2d2;
 		text-align: center;
 		font-size: 14px;
 		color: #383838;
