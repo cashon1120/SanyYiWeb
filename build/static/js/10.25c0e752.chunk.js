@@ -1,2 +1,0 @@
-webpackJsonp([10,16],{593:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),r.d(t,"SAVE_SEARCH_LIST",function(){return a});var a="header/SAVE_SEARCH_LIST"},603:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var a=r(593),n=r(34),u=(r.n(n),Object(n.fromJS)({searchData:[]}));t.default=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:u,t=arguments[1];switch(t.type){case a.SAVE_SEARCH_LIST:return e.set("searchData",t.data);default:return e}}}});
-//# sourceMappingURL=10.25c0e752.chunk.js.map

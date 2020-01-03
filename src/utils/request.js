@@ -41,7 +41,7 @@ request.interceptors.request.use(
   }
 );
 
-request.interceptors.response.use(response => {
+request.interceptors.response.use(response => { 
     if (!response.data.code) {
       return response.data
     }

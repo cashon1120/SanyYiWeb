@@ -6,6 +6,7 @@ import BreadCrumb from '../../common/breadCrumb/Index'
 import SwiperComponent from '../../common/swiper/Index'
 import DefaultImg from '../../statics/images/nopic.jpg'
 import {setDefaultImg, formartPicture, setBannerSize} from '../../utils/format'
+import ComponentTree from '../../common/componentTree/Index'
 import {Button} from 'antd';
 import {
 		Banner,
@@ -332,6 +333,8 @@ class Detail extends Component {
 				const urlType = temp[temp.length - 1]
 				return (
 						<Fragment>
+							<ComponentTree />
+							<div style={{ position: 'relative', left: 150}}>
 								<MainWrapper>
 										<BreadCrumb type={type} id={id} failureLevel={failureLevel}/>
 										<Banner>
@@ -729,6 +732,7 @@ class Detail extends Component {
 												</ContentRight>
 										</ContentWrapper>
 								</MainWrapper>
+								</div>
 						</Fragment>
 				)
 		}

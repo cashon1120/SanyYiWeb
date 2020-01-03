@@ -1,27 +1,65 @@
 import styled from 'styled-components';
-import logoPic from '../../statics/images/logo.jpg';
-import searchPic from '../../statics/images/search.jpg';
+import logoPic from '../../statics/images/logo.png';
+import searchPic from '../../statics/images/search.png';
 
 export const HeaderWrapper = styled.div `
 	z-index: 100;
 	position: relative;
 	height: 67px;
-	background:#eeeeee;
+	background:#18181b;
+	.userName{
+		position: absolute;
+		right: 10px;
+		width: 200px;
+		top: 25px;
+		text-align: right;
+		a{
+			font-size: 12px !important;
+		}
+	}
+	a{
+		position: relative;
+		padding: 20px 0;
+		font-size: 16px;
+		color:#cbcbcb;
+		margin-right: 15px;
+	}
+	.loginOut{
+		display:block;
+		position: absolute;
+		right: 0;
+		background: #ff1506;
+		padding: 10px 0;
+		border-radius: 5px;
+		color: #fff;
+		left: 50%;
+		text-align: center;
+		margin-left: -40px;
+		width: 80px;
+		top: 50px;
+		font-size: 12px !important;
+	}
 	}
 `;
 
 export const NavWrapper = styled.div `{
 		display:block;
 		float:left;
-		&:hover{
-			background:#e3e3e3;
-		}
 		a{
 			padding: 0 20px;
+			height: 67px;
 			line-height:67px;
 			display: inline-block;
+			text-align: center;
+			width: 130px;
 			font-size: 18px;
-			color:#545454;
+			color: #cbcbcb;
+			box-sizing: border-box;
+			&:hover{
+				background: #2a2a2c;
+				color: #fff !important;
+				border-bottom: 4px solid #ff1506;
+			}
 		}
 		div{
 			position: fixed;
@@ -77,14 +115,6 @@ export const NavWrapper = styled.div `{
 							float: left;
 							width: 40%;	
 							font-size: 16px;
-							a{
-								line-height:35px;
-								padding: 0;
-								font-size: 16px;
-							}
-							a:hover{
-								color: #ff0000;
-							}
 						}
 					}
 				}
@@ -120,36 +150,23 @@ export const HeadPicWrapper = styled.div `
 
 export const SearchWrapper = styled.div `
 	float:right;
-	padding-top:8px;
+	padding-top:14px;
 	display:flex;
+	text-align: right;
 	align-items:center;
 	form {
 		display: inline-block;
 		vertical-align: middle;
-		margin-right: 20px;
+		margin-left: 20px;
 	}
-	a{
-		position: relative;
-		padding: 20px 0;
-	}
-	.loginOut{
-		display:block;
+	.userName{
 		position: absolute;
-		right: 0;
-		background: #fff;
-		padding: 10px 0;
-		border-radius: 5px;
-		color: #666;
-		left: 50%;
-		text-align: center;
-		margin-left: -40px;
-		width: 80px;
-		top: 50px;
-		border:2px solid #eee;
+		right: 10px;
 	}
+	
 	button {
-		height: 40px;
-		width: 42px;
+		height: 35px;
+		width: 35px;
 		border: 0;
 		float:left;
 		background: url(${searchPic}) no-repeat;
@@ -158,18 +175,19 @@ export const SearchWrapper = styled.div `
 		cursor: pointer;
 	}
 	.navSearch {
-		width: 369px;
-		height: 40px;
+		width: 200px;
+		height: 35px;
 		padding: 0 20px 0 20px;
 		box-sizing: border-box;
 		float:left;
 		outline: none;
-		background: #fff;
+		background: #323232;
+		border: 0;
 		border-radius: 5px 0 0 5px;
 		font-size: 16px;
 		color: #666;
 		&::placeholder {
-			color: #999;
+			color: #878787;
 		}
 	}
 `;

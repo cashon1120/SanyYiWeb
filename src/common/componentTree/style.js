@@ -5,17 +5,16 @@ export const TreeData = styled.div `
   &.fixedTree{
     position: fixed;
     top: 0;
-    bottom: 127px;
   }
  z-index: 1000;
  position: absolute;
  left: 50%;
- margin-left: -900px;
+ margin-left: -750px;
  width: 280px;
  top: 67px;
- bottom: 60px;
  overflow-y: auto;
  overflow-x: hidden;
+ height: 615px;
  border: 1px solid #eee;
  }
  .treeIcon {

@@ -19,32 +19,35 @@ export const SwiperWrapper = styled.div`
 			margin-top: 12px;
 		}
 	}
+
 	.swiper-img{
-		width: 15.25%;
+		width: 15.5%;
 		box-sizing: border-box;
-		margin-right:20px;
+		margin-right:15px;
 		float: left;
 		text-align: center;
-		height: 134px;
+		height: 130px;
 		position: relative;
-
+		background: #f0f0f0;
+		border-radius: 3px;
+		border: 1px solid #e6e6e6;
+		text-align: center;
+		font-size: 14px;
+		color: #383838;
+		&:hover{
+			.img-container img{
+				transform: scale(1.1);
+			}
+		}
 		.img-container{
 			text-align: center;
-			border: 2px solid #d2d2d2;
-			width: 100%;
-			height:104px;
+			height:82px;
+			margin: 10px;
+			box-sizing: border-box;
 			background-size: 15% auto;
 			background-color: #fff;
 			margin-bottom: 15px;
 			overflow:hidden;
-			&:hover {
-				border: 2px solid #f00;
-				box-sizing: border-box;
-			}
-			&.active {
-				border: 2px solid #f00;
-				box-sizing: border-box;
-			}
 		}
 	}
 	.swiper-img:nth-child(6n+0){
@@ -53,10 +56,9 @@ export const SwiperWrapper = styled.div`
 	}
 	.swiper-button{
 		background: rgba(0,0,0, .5);
-		width: 50px;
-		height: 50px;
-		border-radius: 100%;
-		top: 50px;
+		width: 40px;
+		height: 40px;
+		top: 60px;
 		text-align: center;
 		z-index: 100;
 	}
@@ -65,12 +67,12 @@ export const SwiperWrapper = styled.div`
 		width: 20px;
 		height: 20px;
 		margin: auto;
-		margin-top: 15px;
+		margin-top: 10px;
 		position: relative;
 	}
 
 	.swiper-button-prev{
-		left: -15px;
+		left: -5px;
 	}
 	.swiper-button-next.swiper-button-disabled, .swiper-button-prev.swiper-button-disabled {
 		pointer-events: auto;
@@ -79,24 +81,34 @@ export const SwiperWrapper = styled.div`
 		left: 4px;
 	}
 	.swiper-button-next{
-		right: -15px;
+		right: -5px;
 	}
 	.swiper-button-next i {
-		right: 4px;
+		right: 0px;
+	}
+	.swiper-container{
+		height: 170px;
+	}
+	.swiper-pagination-bullet{
+		background: #e23535;
+		opacity: 1;
+	}
+	.swiper-pagination-bullet-active{
+		background: #1f1f1f;
 	}
 	.swiperIndex {
 		margin: auto;
 		z-index: 1;
 		position: relative;
-		overflow:hidden;
-		height: 135px;
-		width: 1180px;
-		.swiper-img{
-			border: 0;
-			text-align: left;
-		}
+		height: 165px;
 	}
 	.swiperDetail{
+		.swiper-container{
+			height: auto;
+		}
+		.swiper-pagination{
+			display: none;
+		}
 		width:750px;
 		margin-bottom:0;
 		.swiper-img{
@@ -105,7 +117,8 @@ export const SwiperWrapper = styled.div`
 			height: 100px;
 		}
 		.img-container{
-			height: 98px;
+			margin: 5px;
+			height: 88px;
 		}
 		.swiper-img:nth-child(4n+0){
 			float: right;

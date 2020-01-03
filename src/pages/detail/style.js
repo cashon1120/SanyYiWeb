@@ -193,7 +193,6 @@ export const SwiperWrapper = styled.div`
 	margin-top: 30px;
 	z-index: 1;
 	position: relative;
-	background:#efefef;
 	overflow:auto;
 	text-align: center;
 	padding: 30px 0;

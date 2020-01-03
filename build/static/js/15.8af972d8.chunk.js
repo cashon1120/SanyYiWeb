@@ -1,2 +1,0 @@
-webpackJsonp([15],{596:function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),n.d(e,"editPassword",function(){return o});var r=n(81),o=function(t,e){return function(){r.a.post("/user/editPassword",t).then(function(t){var n=t.data;e(n)})}}}});
-//# sourceMappingURL=15.8af972d8.chunk.js.map

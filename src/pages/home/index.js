@@ -8,6 +8,7 @@ import {MainWrapper, H1Title} from '../../style'
 import {actionCreators} from './store';
 import DefaultImg from '../../statics/images/nopic.jpg'
 import videoPic from '../../statics/images/video-1.jpg'
+import defaultBanner from '../../statics/images/index_banner.jpg'
 
 import {setDefaultImg, setBannerSize} from '../../utils/format'
 
@@ -19,7 +20,8 @@ class Home extends PureComponent {
 				loading: false,
 				bannerHeight: '',
 				bannerWidth: '',
-				bannerActive: false
+				bannerActive: false,
+				showMore: false
 		}
 
 		componentDidMount(){
@@ -83,16 +85,25 @@ class Home extends PureComponent {
 		// 跳转系统详情
 		handleClick = () => {
 			const {id} = this.state
+			if(id){
 				this
 						.props
 						.history
 						.push(`/detail/1/${id}`)
+					}
+		}
+
+		toggleShowMore(){
+			const {showMore} = this.state
+			this.setState({
+				showMore: !showMore
+			})
 		}
 
 		render() {
 				let {topComponent, assemblyList} = this.props
 				assemblyList = assemblyList.toJS()
-				const {bannerUrl, activeId, loading, bannerWidth, bannerHeight, bannerActive} = this.state
+				const {bannerUrl, activeId, loading, bannerWidth, bannerHeight, bannerActive, showMore} = this.state
 				topComponent = topComponent.toJS()
 				const componentList = topComponent.length > 0
 						? topComponent[0].children
@@ -114,20 +125,19 @@ class Home extends PureComponent {
 						})
 						return null
 				})
-				let firstUrl = pictureList.length > 0 && pictureList[0].url ? pictureList[0].url : ''
 				return (
 						<Fragment>
-							{!bannerActive ? <DefaultBanner /> : 
+								<DefaultBanner /> 
 								<BannerOuter>
 										<MainWrapper>
 												<BannerWrapper>
 													<div className={bannerActive ? 'active' : null}>
 														<img
-																src={bannerUrl || firstUrl}
 																style={{
-																width: bannerWidth,
-																height: bannerHeight
-														}}
+																	width: bannerWidth,
+																	height: bannerHeight
+															}}
+																src={bannerUrl || defaultBanner}
 																onError={e => setDefaultImg(e)}
 																onClick={this.handleClick}
 																alt="banner"/>
@@ -135,7 +145,7 @@ class Home extends PureComponent {
 												</BannerWrapper>
 										</MainWrapper>
 								</BannerOuter>
-								}
+		
 								<SwiperWrapper>
 										<SwiperComponent
 												classType="swiperIndex"
@@ -148,10 +158,11 @@ class Home extends PureComponent {
 										<Title>
 												<div>
 														<div>
-																<H1Title>底盘</H1Title>
+																<H1Title>底盘系统</H1Title>
+																<div className="titleImg"></div>
 														</div>
 
-														<div>
+														<div className={showMore ? "listWrapper showMore" : "listWrapper"}>
 																{componentList.map(item => <a
 																		onClick={() => this.setActiveId(item.id)}
 																		title={item.componentName}
@@ -160,12 +171,14 @@ class Home extends PureComponent {
 																		: null}
 																		key={item.id}>{item.componentName}</a>)}
 														</div>
+														<a title={!showMore ? '展开' : '收起'} className={showMore ? "downArrow upArrow" : "downArrow"} onClick={() => this.toggleShowMore()}> </a>
 												</div>
 										</Title>
 										<PicContainer>
 												{assemblyList.length > 0
 														? assemblyList.map(item => <Fragment key={item.id}>
 																<li onClick={() => this.showAssemblyDetail(item.id)}>
+																	<div>
 																		<img
 																				src={item.picture.length > 0
 																				? item
@@ -177,6 +190,8 @@ class Home extends PureComponent {
 																				: DefaultImg}
 																				onError={e => setDefaultImg(e)}
 																				alt=""/>
+																		</div>		
+																				<aside className={!item.partDescription ? 'nodata' : null}>{item.partDescription || '暂无描述'}</aside>
 																		<span>{item.componentName}</span>
 																</li>
 														</Fragment>)

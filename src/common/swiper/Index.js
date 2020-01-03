@@ -57,6 +57,10 @@ class SwiperComponent extends Component {
           navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev'
+          },
+          pagination: {
+            el: '.swiper-pagination',
+            clickable :true,
           }
         })
       }, 100)
@@ -80,7 +84,6 @@ class SwiperComponent extends Component {
   }
 
   render() {
-    console.log('更新')
     const {data, listNum, classType, noFocus} = this.props
     const {activeId} = this.state
     const swiperList = this.setSwiperData(data, listNum) // 一组swiper数据
@@ -116,6 +119,7 @@ class SwiperComponent extends Component {
             </ul>
             <div className="swiper-button swiper-button-prev"><IconLeft/></div>
             <div className="swiper-button swiper-button-next"><IconRight/></div>
+            <div class="swiper-pagination"></div>
           </div>
         </div>
       </SwiperWrapper>

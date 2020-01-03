@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 import LoadingImg from '../../statics/images/loading.gif';
-import defaultBannerImg from '../../statics/images/banner2.jpeg'
+import defaultBannerImg from '../../statics/images/banner.jpg'
+import lineImg from '../../statics/images/line.jpg'
+import arrowImg from '../../statics/images/arrow_3.jpg'
 
 export const HomeWrapper = styled.div`
 	overflow: hidden;
@@ -12,11 +14,13 @@ export const BannerOuter = styled.div`
 	margin: 0 auto;
 	background: #fff;
 	width: 1200px;
+	border: 1px solid #cccccc;
+	margin-top: 30px;
 `;
 
 export const DefaultBanner = styled.div`
 	overflow: hidden;
-	height: 450px;
+	height: 373px;
 	background: url(${defaultBannerImg}) no-repeat center;
 	width: 100%;
 `;
@@ -24,13 +28,13 @@ export const DefaultBanner = styled.div`
 export const BannerWrapper = styled.div`
 	overflow: hidden;
 	margin: 0 auto;
-	height: 450px;
+	height: 600px;
 	text-align: center;
-	padding-top: 30px;
 
 	div{
-		height: 390px;
-		width: 821px;
+		height: 600px;
+		width: 1200px;
+		padding: 30px;
 		margin: auto;
 		&::after{
 			content:'';
@@ -54,28 +58,60 @@ export const BannerWrapper = styled.div`
 export const Title = styled.div`
 	overflow: auto;
 	margin: 0 auto;
-	border-bottom: 2px solid #d2d2d2;
 	padding: 15px 0;
 	margin-top: 20px;
+	text-align: center;
 	h1 {
-		padding-bottom: 20px;
-		border-bottom: 1px dashed #d2d2d2;
-		margin-bottom: 15px;
+		padding-bottom: 5px;
+		margin-bottom: 0;
 	}
-	div{
+	.titleImg{
+		width: 328px;
+		height: 11px;
+		margin: auto;
+		background: url(${lineImg}) no-repeat center;
+	}
+	.downArrow{
+		width: 20px;
+		height: 13px;
+		margin: auto;
+		display: block;
+		background: url(${arrowImg}) no-repeat center;
+		transform: rotate(0);
+		margin-top: 10px;
+	}
+
+	.upArrow{
+		transform: rotate(180deg)
+	}
+
+	div.listWrapper{
+		width: 1100px;
+		height: 40px;
+		margin: auto;
+		overflow: hidden;
+		transition: all .3s;
+		margin-top: 30px;
 		a{
-			margin-right: 30px;
+			margin: 5px 10px;
 			display: inline-block;
-			width: 120px;
+			width: 150px;
 			overflow: hidden;
 			white-space: nowrap;
 			text-overflow: ellipsis;
 			padding: 8px 0;
-			font-size: 17px;
+			background: #b50c0c;
+			color: #fff;
+			border-radius: 3px;
+			font-size: 14px;
 			&:hover, &.active{
-				color: #f00;
+				background: #18181b;
+				color: #fff;
 			}
 		}
+	}
+	div.showMore{
+		height: auto;
 	}
 	.flex-box{
 		display: flex;
@@ -94,7 +130,6 @@ export const Title = styled.div`
 export const SwiperWrapper = styled.div`
 	z-index: 1;
 	position: relative;
-	background:#efefef;
 	width: 1200px;
 	margin: auto;
 	overflow:auto;
@@ -117,15 +152,38 @@ export const PicContainer = styled.ul`
 		cursor: pointer;
 		background: url(${LoadingImg}) no-repeat center 40%;
 		background-size: 15% auto;
-		&:hover img{
+		background-color: #f6f6f6;
+		height: 275px;
+		padding: 14px;
+		border: 1px solid #dedee0;
+		&:hover{
 			box-shadow: 0 0 8px rgba(0,0,0,.1);
 		}
-		img{
-			display:block;
-			border: 2px solid #d2d2d2;
-			width: 100%;
-			height: 160px;
+		div{
+			background: #fff;
+			height: 138px;
+			img{
+				width: 100%;
+				height: 138px;
+				margin-bottom: 15px;
+			}
 			margin-bottom: 15px;
+		}
+		aside{
+			height: 45px;
+			overflow: hidden;
+			line-height: 22px;
+			font-size: 14px;
+			&.nodata{
+				color: #9e9e9e;
+			}
+		}
+		span{
+			display: block;
+			font-size: 18px;
+			color: #000;
+			padding-top: 15px;
+			text-align: center;
 		}
 	}
 `;
