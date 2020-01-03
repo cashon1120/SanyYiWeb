@@ -14,14 +14,27 @@ export const BannerOuter = styled.div`
 	margin: 0 auto;
 	background: #fff;
 	width: 1200px;
-	border: 1px solid #cccccc;
-	margin-top: 30px;
+	border: 2px solid #d2d2d2;
 `;
+
+export const IndexBg = styled.div`
+	background: #eee;
+	text-align: center;
+`
+
+export const IndexContainer = styled.div`
+	width: 1240px;
+	background: #fff;
+	margin: auto;
+	padding-top: 20px;
+	padding-bottom: 40px;
+`
 
 export const DefaultBanner = styled.div`
 	overflow: hidden;
 	height: 373px;
 	background: url(${defaultBannerImg}) no-repeat center;
+	background-color: #000;
 	width: 100%;
 `;
 

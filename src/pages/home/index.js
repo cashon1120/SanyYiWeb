@@ -2,7 +2,7 @@ import React, {PureComponent, Fragment} from 'react'
 import {connect} from 'react-redux'
 
 import SwiperComponent from '../../common/swiper/Index'
-import {BannerOuter,DefaultBanner, BannerWrapper, Title, PicContainer, SwiperWrapper} from './style'
+import {BannerOuter,DefaultBanner, BannerWrapper, Title, PicContainer, SwiperWrapper, IndexBg, IndexContainer} from './style'
 import Loading from '../../common/loading/Index'
 import {MainWrapper, H1Title} from '../../style'
 import {actionCreators} from './store';
@@ -127,7 +127,10 @@ class Home extends PureComponent {
 				})
 				return (
 						<Fragment>
+							<IndexBg>
+								
 								<DefaultBanner /> 
+								<IndexContainer>
 								<BannerOuter>
 										<MainWrapper>
 												<BannerWrapper>
@@ -208,8 +211,10 @@ class Home extends PureComponent {
 }
 										</PicContainer>
 								</MainWrapper>
-
+								
 								<Loading loading={loading}/>
+								</IndexContainer>
+								</IndexBg>
 						</Fragment>
 				)
 		}

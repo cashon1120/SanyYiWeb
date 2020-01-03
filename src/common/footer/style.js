@@ -6,7 +6,6 @@ export const FooterWrapper = styled.div `
 	color: #7b7b7b;
 	background:#171717;
 	font-size: 14px;
-	margin-top: 40px;
 	dl{
 		width: 160px;
 		text-align: left;
