@@ -41,7 +41,7 @@ export default() => {
 					<div className="copyright">
 						©版权所有 三一集团  ICP 证: 浙ICP备09109183号-25法律声明<br/>
 转载内容版权归作者及来源网站所有，本站原创内容转载请注明来源  <br/>  
-技术支持: 成都亿盟恒信    联系电话: 010-234234234</div>
+技术支持: 成都亿盟恒信</div>
 				</MainWrapper>
 		</FooterWrapper>
 }

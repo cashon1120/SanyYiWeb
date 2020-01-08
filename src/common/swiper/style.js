@@ -19,7 +19,9 @@ export const SwiperWrapper = styled.div`
 			margin-top: 12px;
 		}
 	}
-
+	.active{
+		border: 2px solid #f00 !important;
+	}
 	.swiper-img{
 		width: 15.5%;
 		box-sizing: border-box;
@@ -30,10 +32,19 @@ export const SwiperWrapper = styled.div`
 		position: relative;
 		background: #f0f0f0;
 		border-radius: 3px;
-		border: 2px solid #d2d2d2;
+		border: 2px solid #000;
 		text-align: center;
 		font-size: 14px;
 		color: #383838;
+		.active-box {
+			position:absolute;
+			border-radius: 3px;
+			border: 2px solid #f00 !important;
+			left: -2px;
+			top: -2px;
+			right: -2px;
+			bottom: -2px;
+		}
 		&:hover{
 			.img-container img{
 				transform: scale(1.1);
@@ -101,6 +112,7 @@ export const SwiperWrapper = styled.div`
 		z-index: 1;
 		position: relative;
 		height: 165px;
+		width: 1200px;
 	}
 	.swiperDetail{
 		.swiper-container{

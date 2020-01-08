@@ -7,6 +7,11 @@ const addAssemblyList = (list) => ({
 	list: fromJS(list),
 })
 
+const saveBanner = (list) => ({
+	type: constants.GET_INDEX_BANNER,
+	list
+})
+
 export const getAssembly = (id, callback) => {
 	return (dispatch) => {
 		request.post('loadAssemblyComponent', {id}).then((res) => {
@@ -14,6 +19,17 @@ export const getAssembly = (id, callback) => {
 				const result = res.data.data;
 				dispatch(addAssemblyList(result));
 				callback()
+			}
+		});
+	}
+}
+
+export const getBanner = () => {
+	return (dispatch) => {
+		request.post('indexVehicle').then((res) => {
+			if(res){
+				const result = res.data.data.value;
+				dispatch(saveBanner(result));
 			}
 		});
 	}

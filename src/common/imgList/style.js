@@ -8,7 +8,7 @@ export const ImgWrapper = styled.ul `
 		height: 350px;
 		text-align: center;
 		margin-right: 15px;
-		border: 2px solid #d2d2d2;
+		border: 2px solid #000;
 		box-sizing: border-box;
 		padding: 1px;
 		&:before{

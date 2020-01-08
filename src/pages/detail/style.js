@@ -21,13 +21,13 @@ export const Banner = styled.div`
 	margin: 0 auto;
 	padding: 30px 0;
 	margin-bottom: 30px;
-	height: 582px;
+	height: 562px;
 	box-sizing: border-box;
 `;
 
 export const BannerMain = styled.div`
 	width: 750px;
-	border:2px solid #d2d2d2;
+	border:2px solid #000;
 	text-align: center;
 	height: 400px;
 	&::after{
@@ -92,7 +92,7 @@ export const ContentRight = styled.div`
 `
 
 export const Content = styled.div`
-	border: 2px solid #d2d2d2;
+	border: 2px solid #000;
 	padding: 0 30px 30px 30px;
 	margin-bottom: 40px;
 	.imglist {
@@ -124,7 +124,7 @@ export const ImgUl = styled.ul`
 		display: flex;
 		align-items: center;
 		padding: 10px 0;
-		border-bottom: 2px solid #d2d2d2;
+		border-bottom: 2px solid #000;
 		&:last-child {
 			border: 0;
 		}
@@ -191,12 +191,13 @@ export const TextArea = styled.div`
 `
 
 export const SwiperWrapper = styled.div`
-	margin-top: 30px;
 	z-index: 1;
 	position: relative;
-	overflow:auto;
+	overflow:hidden;
 	text-align: center;
 	padding: 30px 0;
+	height: 165px;
+	margin-bottom: 20px;
 `
 
 export const ModelUl = styled.ul`

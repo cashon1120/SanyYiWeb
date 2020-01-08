@@ -26,7 +26,8 @@ class Home extends PureComponent {
 
 		componentDidMount(){
 			const {activeId} = this.state
-			const {topComponent} = this.props
+			const {topComponent, getBanner} = this.props
+			getBanner()
 			if(!activeId && topComponent.toJS().length > 0){
 				const activeId = topComponent.toJS()[0].children[0].id
 				this.setActiveId(activeId)
@@ -101,7 +102,7 @@ class Home extends PureComponent {
 		}
 
 		render() {
-				let {topComponent, assemblyList} = this.props
+				let {topComponent, assemblyList, indexBanner} = this.props
 				assemblyList = assemblyList.toJS()
 				const {bannerUrl, activeId, loading, bannerWidth, bannerHeight, bannerActive, showMore} = this.state
 				topComponent = topComponent.toJS()
@@ -140,7 +141,7 @@ class Home extends PureComponent {
 																	width: bannerWidth,
 																	height: bannerHeight
 															}}
-																src={bannerUrl || defaultBanner}
+																src={bannerUrl || indexBanner || defaultBanner}
 																onError={e => setDefaultImg(e)}
 																onClick={this.handleClick}
 																alt="banner"/>
@@ -224,6 +225,7 @@ const mapState = (state) => {
 		return {
 				topComponent: state.getIn(['header', 'topComponent']),
 				assemblyList: state.getIn(['home', 'assemblyList']),
+				indexBanner: state.getIn(['home', 'indexBanner']),
 		}
 }
 
@@ -231,6 +233,9 @@ const mapDispatch = (dispatch) => {
 		return {
 				getAssembly(activeId, callback) {
 						dispatch(actionCreators.getAssembly(activeId, callback))
+				},
+				getBanner(){
+					dispatch(actionCreators.getBanner())
 				}
 		}
 };

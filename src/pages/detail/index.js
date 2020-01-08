@@ -406,12 +406,12 @@ class Detail extends Component {
 										? null
 										: coreComponentList.length > 0
 												? <SwiperWrapper>
-																{/* <SwiperComponent
+																<SwiperComponent
 																		classType="swiperIndex"
 																		data={coreComponentList}
 																		handleClick={this.handleClick}
 																		noFocus={true}
-																		listNum={6}/> */}
+																		listNum={6}/>
 														</SwiperWrapper>
 												: null
 }
@@ -589,7 +589,7 @@ class Detail extends Component {
 																								.getFileList(info.failureModeAttachment, 3)
 																								.length > 0
 																								? <div>
-																												<h2>行业趋势报告</h2>
+		<h2>{parseInt(type, 10) === 1 ? '行业趋势报告' : '型谱'}</h2>
 																												<FileUl>
 																														{this
 																																.getFileList(info.failureModeAttachment, 3)
@@ -657,7 +657,7 @@ class Detail extends Component {
 												</ContentLeft>
 												<ContentRight>
 														<H1Title>{type === '5'
-																		? '历史版本'
+																		? '故障模式版本'
 																		: '故障模式'}</H1Title>
 														<Content style={{
 																padding: 10
@@ -706,7 +706,7 @@ class Detail extends Component {
 												
 														{type === '5' ? 
 														<Fragment>
-																<H1Title style={{marginTop: 30}}>故障模式</H1Title>
+																<H1Title style={{marginTop: 30}}>其它故障模式</H1Title>
 																<Content style={{
 																padding: 10
 														}}>

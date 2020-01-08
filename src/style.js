@@ -96,8 +96,8 @@ injectGlobal`
 	::-webkit-scrollbar-thumb
 	{
 			border-radius: 4px;
-			-webkit-box-shadow: inset 0 0 6px #d2d2d2;
-			background-color: #d2d2d2;
+			-webkit-box-shadow: inset 0 0 6px #000;
+			background-color: #000;
 	}
 
 `;

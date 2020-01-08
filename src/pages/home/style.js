@@ -14,7 +14,7 @@ export const BannerOuter = styled.div`
 	margin: 0 auto;
 	background: #fff;
 	width: 1200px;
-	border: 2px solid #d2d2d2;
+	border: 2px solid #000;
 `;
 
 export const IndexBg = styled.div`
@@ -168,7 +168,7 @@ export const PicContainer = styled.ul`
 		background-color: #f6f6f6;
 		height: 275px;
 		padding: 14px;
-		border: 2px solid #d2d2d2;
+		border: 2px solid #000;
 		&:hover{
 			box-shadow: 0 0 8px rgba(0,0,0,.1);
 		}

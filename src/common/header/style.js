@@ -10,7 +10,6 @@ export const HeaderWrapper = styled.div `
 	.userName{
 		position: absolute;
 		right: 10px;
-		width: 200px;
 		top: 25px;
 		text-align: right;
 		a{
@@ -84,7 +83,7 @@ export const NavWrapper = styled.div `{
 				opacity: 1;
 				height: auto;
 				padding: 50px 50px 50px 100px;
-				border: 2px solid #d2d2d2;
+				border: 2px solid #000;
 				border-top: 0;
 			}
 			&.slide-exit {

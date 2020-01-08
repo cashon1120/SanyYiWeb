@@ -1,1 +1,2 @@
 export const GET_ASEMBLY_COMPONENT = 'home/GET_ASEMBLY_COMPONENT';
+export const GET_INDEX_BANNER = 'home/GET_INDEX_BANNER';

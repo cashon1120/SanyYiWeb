@@ -15,7 +15,7 @@ export const TreeData = styled.div `
  overflow-y: auto;
  overflow-x: hidden;
  bottom: 28%;
- border: 2px solid #d2d2d2;
+ border: 2px solid #000;
  }
  .treeIcon {
   display: none;

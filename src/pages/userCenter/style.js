@@ -13,11 +13,11 @@ export const Title = styled.div`
 export const List = styled.ul`
 	text-align: left;
 	margin-top: 30px;
-	border-top: 2px solid #d2d2d2;
+	border-top: 2px solid #000;
 	li{
 		line-height: 40px;
 		padding: 20px 0;
-		border-bottom: 2px solid #d2d2d2;
+		border-bottom: 2px solid #000;
 		span {
 			display:inline-block;
 			width: 100px;
