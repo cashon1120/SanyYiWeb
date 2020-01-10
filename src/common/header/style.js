@@ -6,12 +6,16 @@ export const HeaderWrapper = styled.div `
 	z-index: 100;
 	position: relative;
 	height: 67px;
-	background:#18181b;
+	background:rgba(24,24,27, .5);
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
 	.userName{
-		position: absolute;
-		right: 10px;
-		top: 25px;
+		float: right;
 		text-align: right;
+		margin-top: 22px;
+		margin-left: 30px;
 		a{
 			font-size: 12px !important;
 		}
@@ -50,7 +54,7 @@ export const NavWrapper = styled.div `{
 			line-height:67px;
 			display: inline-block;
 			text-align: center;
-			width: 130px;
+			padding: 0 30px;
 			font-size: 18px;
 			color: #cbcbcb;
 			box-sizing: border-box;
@@ -126,12 +130,16 @@ export const Logo = styled.div `
 	float:left;
 	top: 0;
 	left: 0;
-	width: 181px;
+	width: 164px;
 	height: 67px;
 	background: url(${logoPic}) no-repeat;
 	background-size: 100% 100%;
 	margin-right: 20px;
 `;
+
+export const NavContainer = styled.div`
+	float: right;
+`
 
 export const HeadPicWrapper = styled.div `
 	display:inline-block;
@@ -159,8 +167,8 @@ export const SearchWrapper = styled.div `
 		margin-left: 20px;
 	}
 	.userName{
-		position: absolute;
-		right: 10px;
+		display: inline-block;
+		vertical-align: middle;
 	}
 	
 	button {
@@ -174,7 +182,7 @@ export const SearchWrapper = styled.div `
 		cursor: pointer;
 	}
 	.navSearch {
-		width: 200px;
+		width: 300px;
 		height: 35px;
 		padding: 0 20px 0 20px;
 		box-sizing: border-box;

@@ -2,7 +2,7 @@ import request from '../../../utils/request';
 
 export const login = (userName, password, callback) => {
 	return () => {
-		request.post('login', {
+		request.post('/login', {
 			userName,
 			password
 		}).then(res => {

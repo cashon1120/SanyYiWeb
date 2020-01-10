@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {Input} from 'antd'
 import {Redirect, Link} from 'react-router-dom'
 import {actionCreators} from './store'
-import {HeaderWrapper, Logo, SearchWrapper, NavWrapper} from './style'
+import {HeaderWrapper, Logo, SearchWrapper, NavWrapper, NavContainer} from './style'
 import Loading from '../loading/Index'
 import {MainWrapper} from '../../style'
 
@@ -79,10 +79,9 @@ class Header extends Component {
 										<HeaderWrapper>
 												<MainWrapper>
 														<Logo/>
-														<NavWrapper
-																onMouseEnter={() => this.setFocus(true)}
-																onMouseLeave={() => this.setFocus(false)}>
-																<a onClick={() => this.gotoHome()}>首页</a>
+														<NavContainer>
+														<NavWrapper>
+																<Link to="/">首页</Link>
 														</NavWrapper>
 														<NavWrapper>
 																<Link to="/pointCheck">点检表</Link>
@@ -90,7 +89,16 @@ class Header extends Component {
 														<NavWrapper>
 																<Link to="/download">附件报告</Link>
 														</NavWrapper>
-														<SearchWrapper>
+														<div className="userName">
+														<Link
+																to="/userCenter"
+																onMouseEnter={() => this.showLoginOut(true)}
+																onMouseLeave={() => this.showLoginOut(false)}>{info.realName}{loginOutVisible
+																		? <span className="loginOut" onClick={() => this.loginOut()}>退出登录</span>
+																		: null}</Link>
+																<a target="blank" href="http://10.13.136.28:8124/">进入后台</a>
+												</div>
+												<SearchWrapper>
 																<div>
 																		<form onSubmit={(e) => this.submitSearch(e)}>
 																				<Input
@@ -103,18 +111,10 @@ class Header extends Component {
 																</div>
 
 														</SearchWrapper>
-
+														</NavContainer>
 												</MainWrapper>
 												<Loading loading={loading}/>
-												<div className="userName">
-														<Link
-																to="/userCenter"
-																onMouseEnter={() => this.showLoginOut(true)}
-																onMouseLeave={() => this.showLoginOut(false)}>{info.realName}{loginOutVisible
-																		? <span className="loginOut" onClick={() => this.loginOut()}>退出登录</span>
-																		: null}</Link>
-																<a target="blank" href="http://10.13.136.28:8124/">进入后台</a>
-												</div>
+												
 										</HeaderWrapper>
 								</Fragment>
 						)

@@ -7,18 +7,33 @@ const addAssemblyList = (list) => ({
 	list: fromJS(list),
 })
 
+const addSystemList = (list) => ({
+	type: constants.GET_SYSTEM_COMPONENT,
+	list: fromJS(list),
+})
+
 const saveBanner = (list) => ({
 	type: constants.GET_INDEX_BANNER,
 	list
 })
 
-export const getAssembly = (id, callback) => {
+export const getAssembly = (pageInfo, callback) => {
 	return (dispatch) => {
-		request.post('loadAssemblyComponent', {id}).then((res) => {
+		request.post('/index/loadAllAssemblyComponentForIndex', pageInfo).then((res) => {
 			if(res){
-				const result = res.data.data;
-				dispatch(addAssemblyList(result));
-				callback()
+				const result = res.data.data.list;
+				callback(result)
+			}
+		});
+	}
+}
+
+export const getSystem = (pageInfo, callback) => {
+	return (dispatch) => {
+		request.post('/index/loadAllSystemComponent', pageInfo).then((res) => {
+			if(res){
+				const result = res.data.data.list;
+				callback(result)
 			}
 		});
 	}

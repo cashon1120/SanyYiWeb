@@ -3,9 +3,16 @@ import styled from 'styled-components'
 export const FooterWrapper = styled.div `
 	text-align: center;
 	padding: 40px 0;
+	margin: auto;
+	margin-top: 30px;
 	color: #7b7b7b;
 	background:#171717;
 	font-size: 14px;
+	section{
+		width: 1200px; 
+		margin: auto;
+		display: flex;
+	}
 	dl{
 		width: 160px;
 		text-align: left;

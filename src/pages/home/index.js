@@ -1,78 +1,71 @@
 import React, {PureComponent, Fragment} from 'react'
 import {connect} from 'react-redux'
-
-import SwiperComponent from '../../common/swiper/Index'
-import {BannerOuter,DefaultBanner, BannerWrapper, Title, PicContainer, SwiperWrapper, IndexBg, IndexContainer} from './style'
+import Header from '../../common/header/Index'
+import {DefaultBanner, More, Title, PicContainer, ClassList} from './style'
 import Loading from '../../common/loading/Index'
-import {MainWrapper, H1Title} from '../../style'
+import {MainWrapper, FlexContainer} from '../../style'
 import {actionCreators} from './store';
-import DefaultImg from '../../statics/images/nopic.jpg'
-import videoPic from '../../statics/images/video-1.jpg'
-import defaultBanner from '../../statics/images/index_banner.jpg'
-
-import {setDefaultImg, setBannerSize} from '../../utils/format'
+import Icon1 from '../../statics/images/icon_1.gif'
+import Icon2 from '../../statics/images/icon_2.gif'
+import Icon3 from '../../statics/images/icon_3.gif'
+import Icon4 from '../../statics/images/icon_4.gif'
+import noPic from '../../statics/images/nopic.jpg'
+import defaultBanner from '../../statics/images/big_banner.jpg'
 
 class Home extends PureComponent {
 		state = {
 				bannerUrl: '',
-				activeId: '',
-				id: '',
 				loading: false,
-				bannerHeight: '',
-				bannerWidth: '',
-				bannerActive: false,
-				showMore: false
+				pageSize: 8,
+				systemList: [],
+				assemblyList: [],
+				showMore_1: true,
+				showMore_2: true,
+				pageNumb_1: 1,
+				pageNumb_2: 1
 		}
 
 		componentDidMount(){
-			const {activeId} = this.state
-			const {topComponent, getBanner} = this.props
+			const {getBanner} = this.props
 			getBanner()
-			if(!activeId && topComponent.toJS().length > 0){
-				const activeId = topComponent.toJS()[0].children[0].id
-				this.setActiveId(activeId)
-			}
+			this.getAssembly()
+			this.getSystem()
 		}
 
-		componentWillReceiveProps(nextprops) {
-				const {activeId} = this.state
-				const {topComponent} = nextprops
-				if(!activeId&& topComponent.toJS().length > 0){
-					const activeId = topComponent.toJS()[0].children[0].id
-					this.setActiveId(activeId)
-				}
-		}
 
-		// 鼠标移入事件
-		handleHover = (bannerUrl, id) => {
-				this.setBanner(bannerUrl)
+
+		getAssembly = () => {
+			const {getAssembly} = this.props
+			const { pageSize, pageNumb_2, assemblyList } = this.state
+			this.setState({
+				loading: true
+			})
+			const callback = list => {
 				this.setState({
-					bannerActive: true,
-					id,
-					// activeId: id
+					pageNumb_2: pageNumb_2 + 1,
+					assemblyList: assemblyList.concat(list),
+					loading: false,
+					showMore_2: list.length >=8 ? true : false
 				})
-		}
-
-		setBanner(url) {
-			if(url.indexOf('mp4') < 0){
-				this.setState({bannerImgUrl: ''})
-				setBannerSize(url, 1142 / 460, (size) => {
-						const {bannerWidth, bannerHeight} = size
-						this.setState({bannerWidth, bannerHeight, bannerUrl: url})
-				})
-			}else{
-				this.setState({bannerImgUrl: url})
 			}
+			getAssembly({pageSize, pageNum: pageNumb_2}, callback)
 		}
 
-		// 设置当前激活系统id, 并同时加载系统下总成数据
-		setActiveId = (activeId) => {
-				const {getAssembly} = this.props
-				this.setState({activeId, loading: true})
-				const callback = response => {
-						this.setState({loading: false})
-				}
-				getAssembly(activeId, callback)
+		getSystem = () => {
+			const {getSystem} = this.props
+			const { pageSize, pageNumb_1, systemList } = this.state
+			this.setState({
+				loading: true
+			})
+			const callback = list => {
+				this.setState({
+					pageNumb_1: pageNumb_1 + 1,
+					systemList: systemList.concat(list),
+					loading: false,
+					showMore_1: list.length >=8 ? true : false
+				})
+			}
+			getSystem({pageSize, pageNum: pageNumb_1}, callback)
 		}
 
 		// 查看详情
@@ -84,138 +77,109 @@ class Home extends PureComponent {
 		}
 
 		// 跳转系统详情
-		handleClick = () => {
-			const {id} = this.state
+		handleClick = (type, id) => {
 			if(id){
 				this
 						.props
 						.history
-						.push(`/detail/1/${id}`)
+						.push(`/detail/${type}/${id}`)
 					}
 		}
 
-		toggleShowMore(){
-			const {showMore} = this.state
-			this.setState({
-				showMore: !showMore
-			})
+		showMore = type => {
+			const {showMore_1, showMore_2} = this.state
+			if(type === 1){
+				if(showMore_1) {
+					this.getSystem() 
+				}
+				return
+			}
+			if(showMore_2){
+				this.getAssembly()
+			}
 		}
 
 		render() {
-				let {topComponent, assemblyList, indexBanner} = this.props
-				assemblyList = assemblyList.toJS()
-				const {bannerUrl, activeId, loading, bannerWidth, bannerHeight, bannerActive, showMore} = this.state
-				topComponent = topComponent.toJS()
-				const componentList = topComponent.length > 0
-						? topComponent[0].children
-						: []
-				let pictureList = []
-				componentList.map(item => {
-						pictureList.push({
-								componentId: item.id,
-								name: item.componentName,
-								url: item.picture.length > 0
-										? item.picture[0].url
-										: DefaultImg,
-								sourceType: item.picture.length > 0
-										? item.picture[0].type
-										: '',
-								id: item.picture.length > 0
-										? item.picture[0].id
-										: ''
-						})
-						return null
-				})
+				const {loading, assemblyList, systemList, showMore_1, showMore_2} = this.state
+				const { indexBanner } = this.props
 				return (
 						<Fragment>
-							<IndexBg>
 								
-								<DefaultBanner /> 
-								<IndexContainer>
-								<BannerOuter>
-										<MainWrapper>
-												<BannerWrapper>
-													<div className={bannerActive ? 'active' : null}>
-														<img
-																style={{
-																	width: bannerWidth,
-																	height: bannerHeight
-															}}
-																src={bannerUrl || indexBanner || defaultBanner}
-																onError={e => setDefaultImg(e)}
-																onClick={this.handleClick}
-																alt="banner"/>
-																</div>
-												</BannerWrapper>
-										</MainWrapper>
-								</BannerOuter>
-		
-								<SwiperWrapper>
-										<SwiperComponent
-												classType="swiperIndex"
-												data={pictureList}
-												// handleClick={this.handleClick}
-												onHover={this.handleHover}
-												listNum={6}/>
-								</SwiperWrapper>
+								<DefaultBanner>
+										<Header prop={this.props} />
+										<img src={indexBanner || defaultBanner} alt="" />
+								</DefaultBanner>
+								<FlexContainer>
+										<ClassList>
+											<section>
+												<div><img src={Icon1} alt="" /></div>
+												<div className="text">系统详情<span>系统信息描述，标准原理及设计雷区。</span></div>
+											</section>
+										</ClassList>
+										<ClassList>
+										<section>
+												<div><img src={Icon2} alt="" /></div>
+												<div className="text">总成详情<span>总成信息描述（包括关联部件），标准原理
+及设计雷区。</span></div>
+</section>
+										</ClassList>
+										<ClassList>
+										<section>
+												<div><img src={Icon3} alt="" /></div>
+												<div className="text">故障模式<span>故障模式描述及原因分析，故障对策等信息。</span></div>
+												</section>
+										</ClassList>
+										<ClassList>
+										<section>
+												<div><img src={Icon4} alt="" /></div>
+												<div className="text">附件报告<span>DFMEA,设计规范,行业趋势报告,法规标准
+质量分析报告,型谱等资料下载</span></div>
+</section>
+										</ClassList>
+								</FlexContainer>
 								<MainWrapper>
-										<Title>
-												<div>
-														<div>
-																<H1Title>底盘系统</H1Title>
-																<div className="titleImg"></div>
-														</div>
-
-														<div className={showMore ? "listWrapper showMore" : "listWrapper"}>
-																{componentList.map(item => <a
-																		onClick={() => this.setActiveId(item.id)}
-																		title={item.componentName}
-																		className={activeId === item.id
-																		? 'active'
-																		: null}
-																		key={item.id}>{item.componentName}</a>)}
-														</div>
-														<a title={!showMore ? '展开' : '收起'} className={showMore ? "downArrow upArrow" : "downArrow"} onClick={() => this.toggleShowMore()}> </a>
-												</div>
-										</Title>
+									<div>
+										<Title>系统</Title>
 										<PicContainer>
-												{assemblyList.length > 0
-														? assemblyList.map(item => <Fragment key={item.id}>
-																<li onClick={() => this.showAssemblyDetail(item.id)}>
-																	<div>
-																		<img
-																				src={item.picture.length > 0
-																				? item
-																						.picture[0]
-																						.url
-																						.indexOf('mp4') > 0
-																						? videoPic
-																						: item.picture[0].url
-																				: DefaultImg}
-																				onError={e => setDefaultImg(e)}
-																				alt=""/>
-																		</div>		
-																				<aside className={!item.partDescription ? 'nodata' : null}>{item.partDescription || '暂无描述'}</aside>
-																		<span>{item.componentName}</span>
-																</li>
-														</Fragment>)
-														: <Fragment>
-																<div className="ant-empty ant-empty-normal">
-																		<div className="ant-empty-image">
-																				<img
-																						alt="暂无数据"
-																						src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNDEiIHZpZXdCb3g9IjAgMCA2NCA0MSIgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAxKSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgIDxlbGxpcHNlIGZpbGw9IiNGNUY1RjUiIGN4PSIzMiIgY3k9IjMzIiByeD0iMzIiIHJ5PSI3Ii8+CiAgICA8ZyBmaWxsLXJ1bGU9Im5vbnplcm8iIHN0cm9rZT0iI0Q5RDlEOSI+CiAgICAgIDxwYXRoIGQ9Ik01NSAxMi43Nkw0NC44NTQgMS4yNThDNDQuMzY3LjQ3NCA0My42NTYgMCA0Mi45MDcgMEgyMS4wOTNjLS43NDkgMC0xLjQ2LjQ3NC0xLjk0NyAxLjI1N0w5IDEyLjc2MVYyMmg0NnYtOS4yNHoiLz4KICAgICAgPHBhdGggZD0iTTQxLjYxMyAxNS45MzFjMC0xLjYwNS45OTQtMi45MyAyLjIyNy0yLjkzMUg1NXYxOC4xMzdDNTUgMzMuMjYgNTMuNjggMzUgNTIuMDUgMzVoLTQwLjFDMTAuMzIgMzUgOSAzMy4yNTkgOSAzMS4xMzdWMTNoMTEuMTZjMS4yMzMgMCAyLjIyNyAxLjMyMyAyLjIyNyAyLjkyOHYuMDIyYzAgMS42MDUgMS4wMDUgMi45MDEgMi4yMzcgMi45MDFoMTQuNzUyYzEuMjMyIDAgMi4yMzctMS4zMDggMi4yMzctMi45MTN2LS4wMDd6IiBmaWxsPSIjRkFGQUZBIi8+CiAgICA8L2c+CiAgPC9nPgo8L3N2Zz4K"/>
-																		</div>
-																		<p className="ant-empty-description">暂无数据</p>
-																</div>
-														</Fragment>
-}
+											{
+												systemList.map(item => 
+												<li onClick={() => this.handleClick(1, item.id)}>
+													<div>
+														<img src={item.picture.length > 0 ? item.picture[0].url ? item.picture[0].url: noPic : noPic} alt="" />
+													</div>
+													<aside>
+														<h1>{item.componentName}</h1>
+														{item.parentName || '底盘系统'}  > 
+														</aside>
+												</li>)
+											}
+											
+											
 										</PicContainer>
+		<More onClick={() => this.showMore(1)}><a> {showMore_1 ? '查看更多' : '没有了'} ></a></More>
+									</div>
+									<div>
+										<Title>总成</Title>
+										<PicContainer>
+										{
+												assemblyList.map(item => 
+												<li onClick={() => this.handleClick(2, item.id)}>
+													<div>
+														<img src={item.picture.length > 0 ? item.picture[0].url ? item.picture[0].url: noPic : noPic} alt="" />
+													</div>
+													<aside>
+														<h1>{item.componentName}</h1>
+														底盘系统 > {item.parentName}
+														</aside>
+												</li>)
+											}
+										</PicContainer>
+										<More onClick={() => this.showMore(2)}><a> {showMore_2 ? '查看更多' : '没有了'} ></a></More>
+									</div>
+								
 								</MainWrapper>
 								
 								<Loading loading={loading}/>
-								</IndexContainer>
-								</IndexBg>
 						</Fragment>
 				)
 		}
@@ -223,17 +187,18 @@ class Home extends PureComponent {
 
 const mapState = (state) => {
 		return {
-				topComponent: state.getIn(['header', 'topComponent']),
-				assemblyList: state.getIn(['home', 'assemblyList']),
 				indexBanner: state.getIn(['home', 'indexBanner']),
 		}
 }
 
 const mapDispatch = (dispatch) => {
 		return {
-				getAssembly(activeId, callback) {
-						dispatch(actionCreators.getAssembly(activeId, callback))
+				getAssembly(pageInfo, callback) {
+						dispatch(actionCreators.getAssembly(pageInfo, callback))
 				},
+				getSystem(pageInfo, callback) {
+					dispatch(actionCreators.getSystem(pageInfo, callback))
+			},
 				getBanner(){
 					dispatch(actionCreators.getBanner())
 				}

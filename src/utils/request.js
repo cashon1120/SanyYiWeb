@@ -2,15 +2,10 @@
 import axios from 'axios'
 import Promise from 'es6-promise'
 import { message } from 'antd'
-import { DEV_MODEL } from '../config'
 Promise.polyfill()
 message.config({ maxCount: 1 }) // message 同时最多只显示一条
 const request = axios.create()
-if(DEV_MODEL === 1){
-  axios.defaults.baseURL = ''
-}else{
-  axios.defaults.baseURL = '/api' 
-}
+axios.defaults.baseURL = '/api'
 request.defaults.timeout = 10000
 request.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 request.interceptors.request.use(

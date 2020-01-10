@@ -5,8 +5,10 @@ import Imglist from '../../common/imgList/Index'
 import BreadCrumb from '../../common/breadCrumb/Index'
 import SwiperComponent from '../../common/swiper/Index'
 import DefaultImg from '../../statics/images/nopic.jpg'
+import Header from '../../common/header/Index'
 import {setDefaultImg, formartPicture, setBannerSize} from '../../utils/format'
 import ComponentTree from '../../common/componentTree/Index'
+import {DetailMainWrapper, SubHeader, H1Title} from '../../style'
 import {Button} from 'antd';
 import {
 		Banner,
@@ -29,7 +31,6 @@ import {
 		TitleContainer
 } from './style'
 import {actionCreators} from './store';
-import {MainWrapper, H1Title} from '../../style'
 
 class Detail extends Component {
 		state = {
@@ -334,8 +335,11 @@ class Detail extends Component {
 				return (
 						<Fragment>
 							<ComponentTree />
+							<SubHeader>
+								<Header prop={this.props} />
+							</SubHeader>
 							<div style={{ position: 'relative', left: 150}}>
-								<MainWrapper>
+								<DetailMainWrapper style={{width: 1200}}>
 										<BreadCrumb type={type} id={id} failureLevel={failureLevel}/>
 										<Banner>
 												<ImgContainer>
@@ -401,7 +405,7 @@ class Detail extends Component {
 																				? '系统总成'
 																				: '核心零部件'}</H1Title>
 														: null}
-								</MainWrapper>
+								</DetailMainWrapper>
 								{(type === '3' || type === '4' || type === '5')
 										? null
 										: coreComponentList.length > 0
@@ -415,7 +419,7 @@ class Detail extends Component {
 														</SwiperWrapper>
 												: null
 }
-								<MainWrapper>
+								<DetailMainWrapper>
 										<ContentWrapper>
 												<ContentLeft>
 														<H1Title>{type === '5'
@@ -731,7 +735,7 @@ class Detail extends Component {
 														
 												</ContentRight>
 										</ContentWrapper>
-								</MainWrapper>
+								</DetailMainWrapper>
 								</div>
 						</Fragment>
 				)

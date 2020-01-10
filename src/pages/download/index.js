@@ -2,9 +2,10 @@ import React, {PureComponent, Fragment} from 'react'
 import {connect} from 'react-redux'
 import {Input, Table, Icon, LocaleProvider} from 'antd';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
+import Header from '../../common/header/Index'
 import {SearchWrapper, TypeList, List} from './style'
 import {actionCreators} from './store';
-import {MainWrapper} from '../../style'
+import {MainWrapper, SubHeader} from '../../style'
 
 class Download extends PureComponent {
 		state = {
@@ -201,6 +202,10 @@ class Download extends PureComponent {
 
 				return (
 						<Fragment>
+							<SubHeader>
+								<Header prop={this.props} />
+							</SubHeader>
+								
 								<MainWrapper style={{
 										minHeight
 								}}>

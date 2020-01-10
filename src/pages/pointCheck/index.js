@@ -2,9 +2,10 @@ import React, {PureComponent, Fragment} from 'react'
 import {connect} from 'react-redux'
 import {Table, Icon, Button, LocaleProvider, message} from 'antd';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
+import Header from '../../common/header/Index'
 import {actionCreators} from './store';
 import {SearchWrapper, SystemList} from './style'
-import {MainWrapper} from '../../style'
+import {MainWrapper, SubHeader} from '../../style'
 
 class PointCheck extends PureComponent {
 		state = {
@@ -286,6 +287,9 @@ class PointCheck extends PureComponent {
 				assemblyList = assemblyList.toJS()
 				return (
 						<Fragment>
+							<SubHeader>
+								<Header prop={this.props} />
+							</SubHeader>
 								<MainWrapper style={{
 										minHeight
 								}}>

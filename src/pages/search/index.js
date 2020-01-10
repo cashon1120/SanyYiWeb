@@ -2,9 +2,10 @@ import React, {PureComponent, Fragment} from 'react'
 import {connect} from 'react-redux'
 import Loading from '../../common/loading/Index'
 import {Link} from 'react-router-dom'
+import Header from '../../common/header/Index'
 import {SearchPage} from './style'
 import {actionCreators} from './store';
-import {MainWrapper} from '../../style'
+import {MainWrapper, SubHeader} from '../../style'
 import {message} from 'antd';
 
 class Download extends PureComponent {
@@ -72,8 +73,10 @@ class Download extends PureComponent {
 				const {loading, list, total, minHeight} = this.state
 				return (
 						<Fragment>
+								<SubHeader>
+									<Header prop={this.props} />
+								</SubHeader>
 								<MainWrapper style={{minHeight}}>
-
 										<SearchPage>
 
 												<h2>为您找到 {total}

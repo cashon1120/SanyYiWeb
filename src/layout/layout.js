@@ -46,7 +46,6 @@ class Layout extends Component {
   render() {
     return (
       <Fragment>
-        <Header prop={this.props}/>
         <Switch>
           <Route path='/' exact component={Home}></Route>
           <Route path='/detail/:type/:id' exact component={Detail}></Route>

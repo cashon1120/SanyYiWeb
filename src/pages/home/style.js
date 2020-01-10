@@ -1,8 +1,4 @@
 import styled from 'styled-components'
-import LoadingImg from '../../statics/images/loading.gif';
-import defaultBannerImg from '../../statics/images/banner.jpg'
-import lineImg from '../../statics/images/line.jpg'
-import arrowImg from '../../statics/images/arrow_3.jpg'
 
 export const HomeWrapper = styled.div`
 	overflow: hidden;
@@ -22,6 +18,12 @@ export const IndexBg = styled.div`
 	text-align: center;
 `
 
+export const More = styled.div`
+	margin-left: 0.8%;
+	display: block;
+	margin-bottom: 20px;
+`
+
 export const IndexContainer = styled.div`
 	width: 1240px;
 	background: #fff;
@@ -32,171 +34,106 @@ export const IndexContainer = styled.div`
 
 export const DefaultBanner = styled.div`
 	overflow: hidden;
-	height: 373px;
-	background: url(${defaultBannerImg}) no-repeat center;
+	padding-bottom: 40%;
 	background-color: #000;
 	width: 100%;
-`;
-
-export const BannerWrapper = styled.div`
-	overflow: hidden;
-	margin: 0 auto;
-	height: 600px;
-	text-align: center;
-
-	div{
-		height: 600px;
-		width: 1200px;
-		padding: 30px;
-		margin: auto;
-		&::after{
-			content:'';
-			display:inline-block;
-			vertical-align:middle;
-			width:0;
-			height: 100%;
-		}
-		&.active{
-			background: #fff;
-		}
-		img{
-			vertical-align:middle;
-			max-width: 100%;
-			max-height: 100%;
-		}
+	position: relative;
+	img{
+		position: absolute;
+		width: 100%;
+		height: 100%
 	}
-	
 `;
 
 export const Title = styled.div`
-	overflow: auto;
-	margin: 0 auto;
+	margin: 0 0.8%;
 	padding: 15px 0;
 	margin-top: 20px;
-	text-align: center;
-	h1 {
-		padding-bottom: 5px;
-		margin-bottom: 0;
-	}
-	.titleImg{
-		width: 328px;
-		height: 11px;
-		margin: auto;
-		background: url(${lineImg}) no-repeat center;
-	}
-	.downArrow{
-		width: 20px;
-		height: 13px;
-		margin: auto;
-		display: block;
-		background: url(${arrowImg}) no-repeat center;
-		transform: rotate(0);
-		margin-top: 10px;
-	}
-
-	.upArrow{
-		transform: rotate(180deg)
-	}
-
-	div.listWrapper{
-		width: 1100px;
-		height: 40px;
-		margin: auto;
-		overflow: hidden;
-		transition: all .3s;
-		margin-top: 30px;
-		a{
-			margin: 5px 10px;
-			display: inline-block;
-			width: 150px;
-			overflow: hidden;
-			white-space: nowrap;
-			text-overflow: ellipsis;
-			padding: 8px 0;
-			background: #b50c0c;
-			color: #fff;
-			border-radius: 3px;
-			font-size: 14px;
-			&:hover, &.active{
-				background: #18181b;
-				color: #fff;
-			}
-		}
-	}
-	div.showMore{
-		height: auto;
-	}
-	.flex-box{
-		display: flex;
-		align-items: flex-end;
-		float: none;
-		.flex-1 {
-			flex: 1;
-			a {
-				position: relative;
-				top: 6px;
-			}
-		}
-	}
+	font-size: 26px;
+	color: #f00;
+	border-bottom: 1px solid #f00;
 `;
 
-export const SwiperWrapper = styled.div`
-	z-index: 1;
+
+export const ClassList = styled.div`
+	border-right: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
 	position: relative;
-	width: 1200px;
-	margin: auto;
-	overflow:auto;
-	text-align: center;
-	padding: 30px 0;
+	z-index: 999;
+	flex: 1;
+	.text{
+		padding: 10px;
+	}
+	section{
+		padding: 15px 50px 10px 50px;
+		display: flex;
+		height: 102px;
+		background: #fff;
+		transition: all .2s ease-out;
+		&:hover{
+			transform: translateY(-20px);
+		}
+	}
+	span{
+		display: block;
+		font-size: 14px; 
+		color: #999;
+		padding-top: 5px;
+		line-height: 20px;
+	}
 `
 
 export const PicContainer = styled.ul`
 	padding-top: 30px;
 	overflow: auto;
+	padding-bottom: 10px;
 	li:nth-child(4n+0){
 		margin-right: 0;
 	}
 	li{
 		float:left;
-		width: 23.4%;
-		margin-right: 25px;
+		width: 23.3%;
+		margin-left: 0.8%;
+		margin-right: 0.9%;
 		box-sizing: border-box;
-		margin-bottom: 30px;
+		margin-bottom: 1.3%;
 		cursor: pointer;
-		background: url(${LoadingImg}) no-repeat center 40%;
-		background-size: 15% auto;
-		background-color: #f6f6f6;
-		height: 275px;
-		padding: 14px;
-		border: 2px solid #000;
+		background-color: #fff;
+		transition: all .2s ease-out;
+		box-shadow: 0 0 10px rgba(0,0,0,.1);
 		&:hover{
-			box-shadow: 0 0 8px rgba(0,0,0,.1);
+			box-shadow: 0 0 15px rgba(0,0,0,.25);
 		}
 		div{
-			background: #fff;
-			height: 138px;
+			background: #fbfbfb;
+			position: relative;
+			padding-bottom: 80%;
+			overflow: hidden;
 			img{
+				position: absolute;
+				top: 50%;
+				left: 0;
+				transform: translateY(-50%);
 				width: 100%;
-				height: 138px;
-				margin-bottom: 15px;
 			}
-			margin-bottom: 15px;
+			&:hover{
+				img {
+					transform: translateY(-50%) scale(1.1);
+				}
+			}
 		}
 		aside{
-			height: 45px;
+			border-top: 1px solid #f5f5f5;
+			padding: 20px;
 			overflow: hidden;
-			line-height: 22px;
+			color: #999;
 			font-size: 14px;
-			&.nodata{
-				color: #9e9e9e;
-			}
 		}
-		span{
-			display: block;
+		h1{
 			font-size: 18px;
 			color: #000;
-			padding-top: 15px;
-			text-align: center;
+			font-weight: normal;
+			padding-bottom: 15px;
 		}
 	}
 `;
