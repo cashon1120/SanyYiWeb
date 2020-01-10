@@ -21,8 +21,7 @@ class Download extends PureComponent {
 						key: 'oldFileName'
 				}, {
 						title: '报告归属',
-						dataIndex: 'assemblyName',
-						key: 'assemblyName'
+						render: record => record.coreComponentsName || record.assemblyName || record.secondarySystemName
 				}, {
 						title: '报告类型',
 						dataIndex: 'businessType',

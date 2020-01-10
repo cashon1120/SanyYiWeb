@@ -14,7 +14,7 @@ export const BannerOuter = styled.div`
 	margin: 0 auto;
 	background: #fff;
 	width: 1200px;
-	border: 2px solid #000;
+	border: 2px solid #f00;
 `;
 
 export const IndexBg = styled.div`

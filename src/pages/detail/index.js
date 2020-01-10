@@ -674,7 +674,7 @@ class Detail extends Component {
 																														: null}>
 																														<Link title={item.failureMode} to={`/detail/5/${item.id}`}>
 																																<span className="link-title">{item.failureMode}</span>
-																																<span>{item.version}</span>
+																																<span>{(item.version).toFixed(1)}</span>
 																														</Link>
 																												</li>
 																										})
