@@ -42,8 +42,8 @@ class Download extends PureComponent {
 										case 4:
 												type = '法规标准'
 												break;
-										case 5:
-												type = '质量分析报告'
+										case 101:
+												type = '故障分析报告'
 												break;
 										default:
 												type = '行业趋势报告'
@@ -80,8 +80,8 @@ class Download extends PureComponent {
 						businessType: 4,
 						name: '法规标准'
 				}, {
-						businessType: 5,
-						name: '质量分析报告'
+						businessType: 101,
+						name: '故障分析报告'
 				}, {
 						businessType: 6,
 						name: '型谱'
