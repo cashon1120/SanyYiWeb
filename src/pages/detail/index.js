@@ -640,13 +640,13 @@ class Detail extends Component {
 }</TextArea>
 																				</div>
 																				{this
-																								.getFileList(info.failureModeAttachment, 5)
+																								.getFileList(info.failureModeAttachment, 1)
 																								.length > 0
 																								? <div>
 																												<h2>故障分析报告</h2>
 																												<FileUl>
 																														{this
-																																.getFileList(info.failureModeAttachment, 5)
+																																.getFileList(info.failureModeAttachment, 1)
 																																.map(item => {
 																																		return <a
 																																				title={item.oldFileName}
