@@ -625,24 +625,7 @@ class Detail extends Component {
 																										</div>
 																								: null
 }
-																						{this
-																								.getFileList(info.failureModeAttachment, 5)
-																								.length > 0
-																								? <div>
-																												<h2>质量分析报告</h2>
-																												<FileUl>
-																														{this
-																																.getFileList(info.failureModeAttachment, 5)
-																																.map(item => {
-																																		return <a
-																																				title={item.oldFileName}
-																																				onClick={() => this.downloadFile(item)}
-																																				key={item.id}>{this.checkFileType(item.oldFileName)}{item.oldFileName}</a>
-																																})}
-																												</FileUl>
-																										</div>
-																								: null
-}
+																						
 																				</Fragment>
 																		: <Fragment>
 																				<div>
@@ -656,6 +639,24 @@ class Detail extends Component {
 																										: <span className="noData">暂无数据</span>
 }</TextArea>
 																				</div>
+																				{this
+																								.getFileList(info.failureModeAttachment, 5)
+																								.length > 0
+																								? <div>
+																												<h2>故障分析报告</h2>
+																												<FileUl>
+																														{this
+																																.getFileList(info.failureModeAttachment, 5)
+																																.map(item => {
+																																		return <a
+																																				title={item.oldFileName}
+																																				onClick={() => this.downloadFile(item)}
+																																				key={item.id}>{this.checkFileType(item.oldFileName)}{item.oldFileName}</a>
+																																})}
+																												</FileUl>
+																										</div>
+																								: null
+}
 																		</Fragment>}
 														</Content>
 												</ContentLeft>
