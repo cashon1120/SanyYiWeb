@@ -661,37 +661,13 @@ class Detail extends Component {
 														</Content>
 												</ContentLeft>
 												<ContentRight>
-														<H1Title>{type === '5'
-																		? '故障模式版本'
-																		: '故障模式'}</H1Title>
+													{type === '5' ? null :
+													<Fragment>
+														<H1Title>故障模式</H1Title>
 														<Content style={{
 																padding: 10
 														}}>
-																{type === '5'
-																		? <Fragment>
-																						<ModelUl>
-																								{historyFailure.length > 0
-																										? historyFailure.map(item => {
-																												return <li
-																														key={item.id}
-																														className={item.id === info.id
-																														? 'active'
-																														: null}>
-																														<Link title={item.failureMode} to={`/detail/5/${item.id}`}>
-																																<span className="link-title">{item.failureMode}</span>
-																																<span>{(item.version).toFixed(1)}</span>
-																														</Link>
-																												</li>
-																										})
-																										: <span
-																												style={{
-																												paddingLeft: 10
-																										}}
-																												className="noData">暂无数据</span>
-}
-																						</ModelUl>
-																				</Fragment>
-																		: <ModelUl>
+														<ModelUl>
 																				{info.failureModes && info.failureModes.length > 0
 																						? info
 																								.failureModes
@@ -705,13 +681,15 @@ class Detail extends Component {
 																								paddingLeft: 10
 																						}}
 																								className="noData">暂无数据</span>
-}
-																		</ModelUl>}
-														</Content>
+																					}
+															</ModelUl>
+															</Content>
+													</Fragment>
+													}
 												
 														{type === '5' ? 
 														<Fragment>
-																<H1Title style={{marginTop: 30}}>其它故障模式</H1Title>
+																<H1Title>故障模式</H1Title>
 																<Content style={{
 																padding: 10
 														}}>
@@ -719,7 +697,7 @@ class Detail extends Component {
 																				{brotherFailureModes && brotherFailureModes.length > 0
 																						? brotherFailureModes
 																								.map(item => {
-																										return <li key={item.id} className={item.id == id ? 'current' : null}>
+																										return <li key={item.id}>
 																												<Link title={item.failureMode} to={`/detail/5/${item.id}`}>{item.failureMode}</Link>
 																										</li>
 																								})
@@ -728,7 +706,7 @@ class Detail extends Component {
 																								paddingLeft: 10
 																						}}
 																								className="noData">暂无数据</span>
-}
+} 
 																		</ModelUl>
 
 														</Content>
