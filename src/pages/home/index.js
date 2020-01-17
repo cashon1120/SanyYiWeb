@@ -16,7 +16,7 @@ class Home extends PureComponent {
 		state = {
 				bannerUrl: '',
 				loading: false,
-				pageSize: 8,
+				pageSize: 10,
 				systemList: [],
 				assemblyList: [],
 				showMore_1: true,
@@ -101,13 +101,12 @@ class Home extends PureComponent {
 
 		render() {
 				const {loading, assemblyList, systemList, showMore_1, showMore_2} = this.state
-				const { indexBanner } = this.props
 				return (
 						<Fragment>
 								
 								<DefaultBanner>
 										<Header prop={this.props} />
-										<img src={indexBanner || defaultBanner} alt="" />
+										<img src={defaultBanner} alt="" />
 								</DefaultBanner>
 								<FlexContainer>
 										<ClassList>

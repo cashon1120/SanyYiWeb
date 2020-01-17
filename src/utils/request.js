@@ -5,7 +5,7 @@ import { message } from 'antd'
 Promise.polyfill()
 message.config({ maxCount: 1 }) // message 同时最多只显示一条
 const request = axios.create()
-axios.defaults.baseURL = ''
+axios.defaults.baseURL = process.env.NODE_ENV === 'development' ? '/api' : '/api';
 request.defaults.timeout = 10000
 request.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 request.interceptors.request.use(

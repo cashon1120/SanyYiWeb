@@ -87,16 +87,16 @@ export const PicContainer = styled.ul`
 	padding-top: 30px;
 	overflow: auto;
 	padding-bottom: 10px;
-	li:nth-child(4n+0){
+	li:nth-child(5n+0){
 		margin-right: 0;
 	}
 	li{
 		float:left;
-		width: 23.3%;
+		width: 18.3%;
 		margin-left: 0.8%;
 		margin-right: 0.9%;
 		box-sizing: border-box;
-		margin-bottom: 1.3%;
+		margin-bottom: 1.5%;
 		cursor: pointer;
 		background-color: #fff;
 		transition: all .2s ease-out;
@@ -134,6 +134,8 @@ export const PicContainer = styled.ul`
 			color: #000;
 			font-weight: normal;
 			padding-bottom: 15px;
+			white-space:nowrap;
+			overflow:hidden;
 		}
 	}
 `;
