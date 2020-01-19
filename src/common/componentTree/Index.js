@@ -22,21 +22,6 @@ class ComponentTree extends Component {
 				const callback = data => {
 						this.setState({data})
 				}
-				const that = this
-				window.addEventListener('scroll', function(){
-					const { fixed } = that.state
-					const height = document.documentElement.scrollTop
-					if(height >= 67 && !fixed){
-						that.setState({
-							fixed: true
-						})
-					}
-					if(height < 67 && fixed){
-						that.setState({
-								fixed: false
-							})
-					}
-				})
 				getComponentList(callback)
 		}
 

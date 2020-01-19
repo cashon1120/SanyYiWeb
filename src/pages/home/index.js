@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import Header from '../../common/header/Index'
 import {DefaultBanner, More, Title, PicContainer, ClassList} from './style'
 import Loading from '../../common/loading/Index'
-import {MainWrapper, FlexContainer} from '../../style'
+import {MainWrapper,MainWrapper1, FlexContainer} from '../../style'
 import {actionCreators} from './store';
 import Icon1 from '../../statics/images/icon_1.gif'
 import Icon2 from '../../statics/images/icon_2.gif'
@@ -30,9 +30,14 @@ class Home extends PureComponent {
 			getBanner()
 			this.getAssembly()
 			this.getSystem()
+			const header = document.getElementById('header')
+			
+			window.addEventListener('scroll', function(){
+				const height = document.documentElement.scrollTop
+				const opacity = Math.min(1, Math.max(0.5, height/500));
+				header.style.background = `rgba(24,24,27, ${opacity})`
+			})
 		}
-
-
 
 		getAssembly = () => {
 			const {getAssembly} = this.props
@@ -103,11 +108,11 @@ class Home extends PureComponent {
 				const {loading, assemblyList, systemList, showMore_1, showMore_2} = this.state
 				return (
 						<Fragment>
-								
+								<Header prop={this.props} />
 								<DefaultBanner>
-										<Header prop={this.props} />
 										<img src={defaultBanner} alt="" />
 								</DefaultBanner>
+								<MainWrapper1>
 								<FlexContainer>
 										<ClassList>
 											<section>
@@ -118,8 +123,7 @@ class Home extends PureComponent {
 										<ClassList>
 										<section>
 												<div><img src={Icon2} alt="" /></div>
-												<div className="text">总成详情<span>总成信息描述（包括关联部件），标准原理
-及设计雷区。</span></div>
+												<div className="text">总成详情<span>总成信息描述（包括关联部件），标准原理及设计雷区。</span></div>
 </section>
 										</ClassList>
 										<ClassList>
@@ -131,11 +135,11 @@ class Home extends PureComponent {
 										<ClassList>
 										<section>
 												<div><img src={Icon4} alt="" /></div>
-												<div className="text">附件报告<span>DFMEA,设计规范,行业趋势报告,法规标准
-质量分析报告,型谱等资料下载</span></div>
+												<div className="text">附件报告<span>DFMEA,设计规范,行业趋势报告,型谱等资料下载。</span></div>
 </section>
 										</ClassList>
 								</FlexContainer>
+								</MainWrapper1>
 								<MainWrapper>
 									<div>
 										<Title>系统</Title>

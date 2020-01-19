@@ -104,13 +104,25 @@ injectGlobal`
 
 export const MainWrapper = styled.div`
 	position: relative;
-	width: 85vw;
+	width: 80vw;
 	min-width: 1200px;
 	margin:auto;
 	.tableA {
 		color: #1890ff;
 	}
 `;
+
+export const MainWrapper1 = styled.div`
+	position: relative;
+	width: 85vw;
+	min-width: 1200px;
+	margin:auto;
+	border-left: 1px solid #d2d2d2;
+	.tableA {
+		color: #1890ff;
+	}
+`;
+
 
 export const DetailMainWrapper = styled.div`
 position: relative;
@@ -119,7 +131,11 @@ position: relative;
 `
 
 export const SubHeader = styled.div`
-	position: relative;
+	position: fixed;
+	width: 100%;
+	left: 0;
+	top: 0;
+	z-index: 999;
 	background: #171717;
 	height: 67px;
 	margin-bottom: 30px;

@@ -7,11 +7,11 @@ export const TreeData = styled.div `
     top: 0;
   }
  z-index: 1000;
- position: absolute;
+ position: fixed;
  left: 50%;
  margin-left: -750px;
  width: 280px;
- top: 67px;
+ top: 65px;
  overflow-y: auto;
  overflow-x: hidden;
  bottom: 28%;

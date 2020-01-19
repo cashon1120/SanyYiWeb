@@ -76,7 +76,7 @@ class Header extends Component {
 				if (isLogin) {
 						return (
 								<Fragment>
-										<HeaderWrapper>
+										<HeaderWrapper id="header">
 												<MainWrapper>
 														<Logo/>
 														<NavContainer>

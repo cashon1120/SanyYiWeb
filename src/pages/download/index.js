@@ -207,7 +207,8 @@ class Download extends PureComponent {
 							</SubHeader>
 								
 								<MainWrapper style={{
-										minHeight
+										minHeight,
+										paddingTop: 90
 								}}>
 										<SearchWrapper>
 												<Input

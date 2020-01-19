@@ -291,7 +291,8 @@ class PointCheck extends PureComponent {
 								<Header prop={this.props} />
 							</SubHeader>
 								<MainWrapper style={{
-										minHeight
+										minHeight,
+										paddingTop: 90
 								}}>
 										<SearchWrapper>
 												<div className="list">

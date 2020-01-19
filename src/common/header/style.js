@@ -3,14 +3,13 @@ import logoPic from '../../statics/images/logo.png';
 import searchPic from '../../statics/images/search.png';
 
 export const HeaderWrapper = styled.div `
-	z-index: 100;
-	position: relative;
-	height: 67px;
-	background:rgba(24,24,27, .5);
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
+	height: 67px;
+	z-index: 9999;
+	background:rgba(24,24,27, .5);
 	.userName{
 		float: right;
 		text-align: right;
